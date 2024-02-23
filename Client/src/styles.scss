@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --item-bg-color: #e0e0e0;
+  --item-bg-active-color: #ccc;
+  --main-color: #2196f3;
+  --text-color: #fff;
+}
+ul {
+  margin: 0;
+  padding: 0 !important;
+  list-style: none;
+}
+body {
+  margin: 0;
+  padding: 0;
+}

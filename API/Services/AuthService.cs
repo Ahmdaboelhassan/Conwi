@@ -45,7 +45,7 @@ namespace API.Services
             if(!results.Succeeded){
                var errorMessages = new List<string>();
                foreach(var error in results.Errors){
-                    errorMessages.Append(error.Description);
+                    errorMessages.Add(error.Description);
                }
                return new AuthResponse {Messages = errorMessages};
             }
@@ -90,7 +90,7 @@ namespace API.Services
                 return new AuthResponse {Messages = new List<string> {"Password is not correct"}};
 
             var tokenInfo = await CreateToken(userFromDb);
-            var tokenExpiresOn = tokenInfo.ValidFrom;
+            var tokenExpiresOn = tokenInfo.ValidTo;
             var token = new JwtSecurityTokenHandler().WriteToken(tokenInfo);
             
             // check if is email has not confrimed

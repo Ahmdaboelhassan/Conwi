@@ -1,0 +1,21 @@
+// custom style
+header {
+  background-color: var(--main-color);
+}
+header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+}
+
+// header start
+.header-left {
+  text-align: start;
+  flex-basis: 25%;
+  h2 {
+    font-size: 28px;
+    margin-left: 7px;
+    color: var(--text-color);
+  }
+}

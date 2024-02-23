@@ -19,6 +19,17 @@ namespace API.Extinctions
 
           services.Configure<EmailSettings>(config.GetSection("Email"));
 
+          services.AddCors(
+                 options => options.AddPolicy("AllowedAudience" , 
+                    policy => {
+                        policy.AllowAnyHeader()
+                              .AllowAnyMethod()
+                              .AllowCredentials()
+                              .WithOrigins("http://localhost:4200");
+                    }
+                 )
+            );
+
           return services;
         }
     }
