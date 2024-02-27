@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.Models
 {
-    public class Register
+    public record class Register
     {
         [Required , StringLength(20)]
         [RegularExpression("^[A-Z]?[A-Za-z]+")]

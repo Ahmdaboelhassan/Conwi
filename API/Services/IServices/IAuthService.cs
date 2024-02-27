@@ -1,4 +1,3 @@
-using API.DTOs;
 using API.Models;
 
 namespace API.Services.IServices

@@ -8,6 +8,7 @@ namespace API.Helper
         public MappingProfile()
         {
             CreateMap<Register, AppUser>();
+            CreateMap<AppUser, UserProfile>();
         }
     }
 }

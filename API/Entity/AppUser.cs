@@ -16,5 +16,6 @@ namespace API.Models
         public string City { get; set; }
        
         public DateOnly DateOfBirth {get;set;}
+        public string? PhotoURL { get; set; }
     }
 }

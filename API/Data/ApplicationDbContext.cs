@@ -1,3 +1,4 @@
+using API.Entity;
 using API.Helper;
 using API.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace API.Data
         {
             
         }
+        public DbSet<Post> Posts {get; set;}
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

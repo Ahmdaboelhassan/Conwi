@@ -14,10 +14,16 @@ namespace API.Extinctions
           services.AddScoped<IAuthService, AuthService>();
           
           services.AddScoped<IEmailService, EmailService>();
+
+          services.AddScoped<IUserService, UserService>();
+
+          services.AddScoped<IPhotoService, PhotoService>();
           
           services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
           services.Configure<EmailSettings>(config.GetSection("Email"));
+
+          services.Configure<CloudinaryAccount>(config.GetSection("CloudinaryAccount"));
 
           services.AddCors(
                  options => options.AddPolicy("AllowedAudience" , 
