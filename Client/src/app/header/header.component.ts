@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { LoginModel } from '../Interfaces/LoginModel';
 import { User } from 'Models/User';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,16 +12,16 @@ import { User } from 'Models/User';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  isAuth: boolean = false;
+  isAuth: boolean;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.autoLogin();
-
     this.authService.user$.subscribe({
       next: (user: User) => (this.isAuth = !!user),
     });
+
+    this.authService.autoLogin();
   }
 
   Login(form: NgForm) {

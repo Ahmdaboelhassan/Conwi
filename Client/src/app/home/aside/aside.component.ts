@@ -10,12 +10,11 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class AsideComponent {
   icons;
   constructor(
-    private iconSservice: IconService,
+    private iconService: IconService,
     private authService: AuthService
   ) {
-    this.icons = this.iconSservice.icons;
+    this.icons = this.iconService.icons;
   }
-
   logout() {
     this.authService.logout();
   }

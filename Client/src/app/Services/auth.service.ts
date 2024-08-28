@@ -5,6 +5,8 @@ import { LoginModel } from '../Interfaces/LoginModel';
 import { AuthResponseModel } from '../Interfaces/AuthResponseModel';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { User } from 'Models/User';
+import { environment } from 'src/environments/environment.development';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -12,17 +14,15 @@ import { User } from 'Models/User';
 export class AuthService {
   private userSubject: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>(null);
-  private errorsSubject: Subject<string[]> = new Subject();
 
   user$: Observable<User> = this.userSubject.asObservable();
-  errors$: Observable<string[]> = this.errorsSubject.asObservable();
 
-  baseUrl: string = 'https://localhost:5000/api/Auth/';
+  baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private toester: ToastrService) {}
 
   register(model: RegisterModel): Subscription {
-    const url = this.baseUrl + 'Register';
+    const url = environment.baseUrl + 'Auth/Register';
 
     return this.http.post<AuthResponseModel>(url, model).subscribe({
       next: (res) => this.manageLogin(res),
@@ -31,25 +31,12 @@ export class AuthService {
   }
 
   login(model: LoginModel): Subscription {
-    const url = this.baseUrl + 'Login';
+    const url = environment.baseUrl + 'Auth/Login';
 
     return this.http.post<AuthResponseModel>(url, model).subscribe({
       next: (res) => this.manageLogin(res),
       error: (resError) => this.manageError(resError),
     });
-  }
-
-  manageLogin(response: AuthResponseModel) {
-    let registerdUser: User = new User(
-      response.userName,
-      response.email,
-      response.token,
-      response.expireOn,
-      response.isEmailConfrimed
-    );
-    localStorage.setItem('user', JSON.stringify(registerdUser));
-    console.log('ssss');
-    this.userSubject.next(registerdUser);
   }
 
   autoLogin() {
@@ -77,7 +64,24 @@ export class AuthService {
     }
   }
 
-  manageError(resError) {
+  refreshToken() {}
+  confirmEmail() {}
+  resetPassword() {}
+
+  private manageLogin(response: AuthResponseModel) {
+    let registerdUser: User = new User(
+      response.userName,
+      response.email,
+      response.token,
+      response.expireOn,
+      response.isEmailConfrimed
+    );
+    localStorage.setItem('user', JSON.stringify(registerdUser));
+    this.userSubject.next(registerdUser);
+    this.toester.success(`Hi ${registerdUser.Username}`);
+  }
+
+  private manageError(resError) {
     const errorObject = resError.error;
     let errorList: string[] = [];
     if (errorObject.errors) {
@@ -89,9 +93,8 @@ export class AuthService {
     } else {
       errorList.push('Unknown Error Occured');
     }
-    this.errorsSubject.next(errorList);
+    errorList.forEach((el) => {
+      this.toester.error(el);
+    });
   }
-
-  confirmEmail() {}
-  resetPassword() {}
 }

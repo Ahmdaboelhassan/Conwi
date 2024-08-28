@@ -1,0 +1,11 @@
+.post-box {
+  width: 35vw;
+  textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    caret-color: var(--main-color);
+    color: var(--main-color);
+    outline: 1px solid var(--main-color);
+  }
+}

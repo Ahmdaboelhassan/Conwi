@@ -1,6 +1,8 @@
 <ul>
   <li><fa-icon class="icon" [icon]="icons.Home"></fa-icon> Home</li>
-  <li><fa-icon class="icon" [icon]="icons.Profile"></fa-icon> Profile</li>
+  <li routerLink="profile" routerLinkActive="active">
+    <fa-icon class="icon" [icon]="icons.Profile"></fa-icon> Profile
+  </li>
   <li><fa-icon class="icon" [icon]="icons.Search"></fa-icon> Search</li>
   <li>
     <fa-icon class="icon" [icon]="icons.Notification"></fa-icon> Notification

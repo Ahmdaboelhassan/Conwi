@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-3">
+      <img
+        class="mw-100"
+        src="{{ user ? user.photoURL : defualtPhoto }}"
+        alt="Profile"
+      />
+    </div>
+    <div class="col-9" *ngIf="!user">
+      <h4 class="text-primary">User Full Name</h4>
+      <ul class="text-secondary">
+        <li>UserName</li>
+        <li>Email</li>
+        <li>Country, City</li>
+        <li>DateOfBirth</li>
+      </ul>
+    </div>
+    <div class="col-9" *ngIf="user">
+      <h4 class="text-primary">{{ user.firstName }} {{ user.lastName }}</h4>
+      <ul class="text-secondary">
+        <li>{{ user.userName }}</li>
+        <li>{{ user.email }}</li>
+        <li>{{ user.country }}, {{ user.city }}</li>
+        <li>{{ user.dateOfBirth }}</li>
+      </ul>
+      <button
+        class="btn btn-outline-primary"
+        (click)="enablePostArea()"
+        *ngIf="!PostArea"
+      >
+        Add Post
+      </button>
+    </div>
+  </div>
+  <div class="post-box" #postBox *ngIf="PostArea">
+    <form #postForm="ngForm">
+      <div class="text-end py-2">
+        <button class="btn btn-outline-danger" (click)="disablePostArea()">
+          X
+        </button>
+      </div>
+      <div>
+        <textarea
+          ngModel
+          name="content"
+          class="w-100"
+          maxlength="100"
+        ></textarea>
+        <p class="text-primary" id="charIndcator">
+          Characters left : {{ textAreaAvailbleChars }}
+        </p>
+      </div>
+      <div class="post-photo d-flex">
+        <input
+          type="file"
+          ngModel
+          name="photo"
+          accept=".jpeg,.jpg,.png"
+          class="form-control w-75"
+        />
+        <button class="btn btn-outline-primary w-25 ms-2" type="submit">
+          Post
+        </button>
+      </div>
+    </form>
+  </div>
+  <hr />
+  <div class="row">
+    <div>posts</div>
+    <div>posts</div>
+    <div>posts</div>
+    <div>posts</div>
+  </div>
+</div>
