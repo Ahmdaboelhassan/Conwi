@@ -1,7 +1,9 @@
 ﻿using Application.Helper;
+using Application.IRepository;
 using Application.IServices;
 using Domain.Entity;
 using Infrastructure.Data;
+using Infrastructure.Repository;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -49,14 +51,17 @@ namespace Infrastructure
             });
             services.Configure<JWT>(Config.GetSection("JWT"));
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
-           services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAuthService, AuthService>();
           
-          services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IEmailService, EmailService>();
 
-          services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();
 
-          services.AddScoped<IPhotoService, PhotoService>();
+            services.AddScoped<IPhotoService, PhotoService>();
+
+
          return services;
         }
 

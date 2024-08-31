@@ -6,6 +6,7 @@ using Application.DTO.Request;
 using Application.DTO.Response;
 using Application.IServices;
 using Microsoft.AspNetCore.Http;
+using Application.IRepository;
 
 namespace Infrastructure.Services
 {
@@ -14,15 +15,15 @@ namespace Infrastructure.Services
         private readonly UserManager<AppUser> _userManger;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
 
         public UserService(UserManager<AppUser> userManger, IMapper mapper,
-                 IPhotoService photoService,ApplicationDbContext db )
+                 IPhotoService photoService, IUnitOfWork unitOfWork)
         {
             _userManger = userManger;
             _mapper = mapper;
             _photoService = photoService;
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<UserProfile?> GetUserProfileAsync(string userEmail)
@@ -69,8 +70,8 @@ namespace Infrastructure.Services
                 photoURL = result.SecureUrl.AbsoluteUri
            };
 
-            _db.Posts.Add(newPost);
-            if(_db.SaveChanges() == 0) return false;
+            await _unitOfWork.Posts.AddAsync(newPost);
+            if(_unitOfWork.SaveChanges() == 0) return false;
             return true; 
         }
         

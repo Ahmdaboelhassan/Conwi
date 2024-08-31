@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Programming Progects\\.Net\\Conwi\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{DE0CE6B8-613B-4F50-920E-28E570554AE8}|src\\API\\API.csproj|d:\\programming progects\\.net\\conwi\\src\\api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE0CE6B8-613B-4F50-920E-28E570554AE8}|src\\API\\API.csproj|solutionrelative:src\\api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE0CE6B8-613B-4F50-920E-28E570554AE8}|src\\API\\API.csproj|d:\\programming progects\\.net\\conwi\\src\\api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE0CE6B8-613B-4F50-920E-28E570554AE8}|src\\API\\API.csproj|solutionrelative:src\\api\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE0CE6B8-613B-4F50-920E-28E570554AE8}|src\\API\\API.csproj|d:\\programming progects\\.net\\conwi\\src\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DE0CE6B8-613B-4F50-920E-28E570554AE8}|src\\API\\API.csproj|solutionrelative:src\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FFCF5ABF-84E3-40AB-A19C-62FD25219A3A}|src\\Application\\Application.csproj|d:\\programming progects\\.net\\conwi\\src\\application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{FFCF5ABF-84E3-40AB-A19C-62FD25219A3A}|src\\Application\\Application.csproj|solutionrelative:src\\application\\dependencyinjection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DE0CE6B8-613B-4F50-920E-28E570554AE8}|src\\API\\API.csproj|d:\\programming progects\\.net\\conwi\\src\\api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{DE0CE6B8-613B-4F50-920E-28E570554AE8}|src\\API\\API.csproj|solutionrelative:src\\api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -30,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -39,71 +18,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "D:\\Programming Progects\\.Net\\Conwi\\src\\API\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "src\\API\\Controllers\\UserController.cs",
-              "ToolTip": "D:\\Programming Progects\\.Net\\Conwi\\src\\API\\Controllers\\UserController.cs",
-              "RelativeToolTip": "src\\API\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-28T21:23:24.994Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AuthController.cs",
-              "DocumentMoniker": "D:\\Programming Progects\\.Net\\Conwi\\src\\API\\Controllers\\AuthController.cs",
-              "RelativeDocumentMoniker": "src\\API\\Controllers\\AuthController.cs",
-              "ToolTip": "D:\\Programming Progects\\.Net\\Conwi\\src\\API\\Controllers\\AuthController.cs",
-              "RelativeToolTip": "src\\API\\Controllers\\AuthController.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAkwDsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-28T21:23:17.069Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DependencyInjection.cs",
-              "DocumentMoniker": "D:\\Programming Progects\\.Net\\Conwi\\src\\Application\\DependencyInjection.cs",
-              "RelativeDocumentMoniker": "src\\Application\\DependencyInjection.cs",
-              "ToolTip": "D:\\Programming Progects\\.Net\\Conwi\\src\\Application\\DependencyInjection.cs",
-              "RelativeToolTip": "src\\Application\\DependencyInjection.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-28T20:19:58.997Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "API",
-              "DocumentMoniker": "D:\\Programming Progects\\.Net\\Conwi\\src\\API\\API.csproj",
-              "RelativeDocumentMoniker": "src\\API\\API.csproj",
-              "ToolTip": "D:\\Programming Progects\\.Net\\Conwi\\src\\API\\API.csproj",
-              "RelativeToolTip": "src\\API\\API.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-08-28T20:09:34.994Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Programming Progects\\.Net\\Conwi\\src\\API\\Program.cs",
-              "RelativeDocumentMoniker": "src\\API\\Program.cs",
-              "ToolTip": "D:\\Programming Progects\\.Net\\Conwi\\src\\API\\Program.cs",
-              "RelativeToolTip": "src\\API\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-28T20:01:58.705Z",
-              "EditorCaption": ""
             }
           ]
         }
