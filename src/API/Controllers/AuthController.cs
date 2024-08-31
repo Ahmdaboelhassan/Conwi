@@ -4,6 +4,13 @@ using Application.DTO.Response;
 using Application.IServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using MediatR;
+using Application.Users.Command.Register;
+using Application.Users.Command.Login;
+using Application.Users.Queries.GetEmailConfirmationToken;
+using Application.Users.Queries.GetPasswordResetToken;
+using Application.Users.Command.ConfirmEmail;
+using Application.Users.Command.ResetPassword;
 
 namespace API.Controllers
 {
@@ -11,20 +18,18 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthService _authService;
+        private readonly IMediator _mediator;
         private readonly IEmailService _emailService;
-        public AuthController(IAuthService authService, IEmailService emailService)
+        public AuthController(IEmailService emailService, IMediator mediator)
         {
             _emailService = emailService;
-            _authService = authService;
-
+            _mediator = mediator;
         }
 
         [HttpPost("Register")]
         public async Task<ActionResult<AuthResponse>> Register(Register model)
         {
-
-            var AuthResponse = await _authService.RegisterAsync(model);
+            var AuthResponse = await _mediator.Send(new RegisterCommand(model));
 
             if (!AuthResponse.IsAuthenticated)
                 return BadRequest(AuthResponse.Messages);
@@ -38,7 +43,7 @@ namespace API.Controllers
         public async Task<ActionResult<AuthResponse>> Login(LogIn model)
         {
 
-            var AuthResponse = await _authService.LoginAsync(model);
+            var AuthResponse = await _mediator.Send(new UserLoginCommand(model));
 
             if (!AuthResponse.IsAuthenticated)
                 return BadRequest(AuthResponse.Messages);
@@ -50,7 +55,7 @@ namespace API.Controllers
         public async Task<ActionResult<string>> GetEmailConfirmationUrl(ConfirmationRequest model)
         {
 
-            var confirmationResponse = await _authService.GetEmailConfirmationToken(model.Email);
+            var confirmationResponse = await _mediator.Send(new EmailConfirmationTokenQuery(model.Email));
 
             if (!confirmationResponse.isGenerated)
                 return BadRequest(confirmationResponse.Messages);
@@ -68,7 +73,7 @@ namespace API.Controllers
         public async Task<ActionResult<string>> GetPasswordResetUrl(ConfirmationRequest model)
         {
 
-            var confirmResponse = await _authService.GetPasswordResetToken(model.Email);
+            var confirmResponse = await _mediator.Send(new PasswordResetTokenQuery(model.Email));
 
             if (!confirmResponse.isGenerated)
                 return BadRequest(confirmResponse.Messages);
@@ -85,7 +90,7 @@ namespace API.Controllers
         public async Task<ActionResult<string>> ConfirmEmail([FromQuery] string email, string token)
         {
 
-            var confirmEmail = await _authService.ConfrimEmailAsync(email, token);
+            var confirmEmail = await  _mediator.Send(new ConfirmEmailCommand(email,token));
 
             if (!confirmEmail)
                 return BadRequest("Email has not confirmed");
@@ -97,7 +102,7 @@ namespace API.Controllers
         public async Task<ActionResult<string>> ResetPassword([FromQuery] string email, string token, string newPassword)
         {
 
-            var isPasswordReset = await _authService.ResetPasswordAsync(email, token, newPassword);
+            var isPasswordReset = await _mediator.Send(new ResetPasswordCommand(email, token, newPassword));
 
             if (!isPasswordReset)
                 return BadRequest("An Error Occured");

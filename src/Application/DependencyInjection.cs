@@ -12,8 +12,8 @@ namespace Application
             services.Configure<EmailSettings>(cfg.GetSection("Email"));
 
             services.Configure<CloudinaryAccount>(cfg.GetSection("CloudinaryAccount"));
-
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
 
             return services;
         }

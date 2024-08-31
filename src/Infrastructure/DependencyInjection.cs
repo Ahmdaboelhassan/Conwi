@@ -52,14 +52,12 @@ namespace Infrastructure
             services.Configure<JWT>(Config.GetSection("JWT"));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            services.AddScoped<IAuthService, AuthService>();
           
             services.AddScoped<IEmailService, EmailService>();
 
-            services.AddScoped<IUserService, UserService>();
-
             services.AddScoped<IPhotoService, PhotoService>();
+
+            services.AddScoped<ITokenService, TokenService>();
 
 
          return services;
