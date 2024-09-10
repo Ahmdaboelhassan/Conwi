@@ -3,6 +3,7 @@ using Application.IServices;
 using Domain.Entity;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Application.Users.Command.Login
@@ -11,11 +12,14 @@ namespace Application.Users.Command.Login
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly ITokenService _tokenService;
+        private readonly ILogger<UserLoginCommandHandler> _logger;
 
-        public UserLoginCommandHandler(UserManager<AppUser> userManager, ITokenService tokenService)
+        public UserLoginCommandHandler(UserManager<AppUser> userManager, ITokenService tokenService,
+            ILogger<UserLoginCommandHandler> logger)
         {
             _userManager = userManager;
             _tokenService = tokenService;
+            _logger = logger;
         }
 
         public  async Task<AuthResponse> Handle(UserLoginCommand request, CancellationToken cancellationToken)
@@ -48,6 +52,7 @@ namespace Application.Users.Command.Login
             // check if is email has not confrimed
             var isConfrimed = await _userManager.IsEmailConfirmedAsync(userFromDb);
 
+            _logger.LogInformation($"{userFromDb.UserName} Log In Successfully");
             return new AuthResponse
             {
                 Messages = new List<string> { "You are signing in successfully" },

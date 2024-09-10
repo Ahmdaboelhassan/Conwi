@@ -19,9 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0C9DFC2B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Conwi.Tests", "Conwi.Tests\Conwi.Tests.csproj", "{A96B788E-A316-4DE1-AC17-95852DBA8A9B}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A04F2EF5-4657-4919-AEE4-D3634BEFDDAC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0DFF2DD6-C2A6-4E6A-80F8-A684763A4C86}"
 	ProjectSection(SolutionItems) = preProject
-		src\API\.gitignore = src\API\.gitignore
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Global

@@ -1,6 +1,7 @@
-appsettings.Development.json
-appsettings.json
-/obj
-/bin 
-/.vs
-/.vscode
+obj/
+bin/
+Debug/
+.vs/
+Conwi/.vs/
+.github/
+**.json
