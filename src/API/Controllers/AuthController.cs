@@ -3,7 +3,6 @@ using Application.DTO.Request;
 using Application.DTO.Response;
 using Application.IServices;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
 using MediatR;
 using Application.Users.Command.Register;
 using Application.Users.Command.Login;
@@ -14,9 +13,7 @@ using Application.Users.Command.ResetPassword;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseController
     {
         private readonly IMediator _mediator;
         private readonly IEmailService _emailService;

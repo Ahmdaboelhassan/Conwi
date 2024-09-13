@@ -1,13 +1,9 @@
-using Application.IServices;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.Controllers
-{
-    [ApiController]
-    [Route("api/[controller]")]
+namespace API.Controllers;
 
-    public class UserController : ControllerBase
-    {
-      
-    }
+public class UserController : BaseController
+{   
+
+   
 }
