@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AsideComponent } from './aside.component';
+import { NavigatorComponent } from './navigator.component';
 
-describe('AsideComponent', () => {
-  let component: AsideComponent;
-  let fixture: ComponentFixture<AsideComponent>;
+describe('NavigatorComponent', () => {
+  let component: NavigatorComponent;
+  let fixture: ComponentFixture<NavigatorComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AsideComponent]
+      declarations: [NavigatorComponent]
     });
-    fixture = TestBed.createComponent(AsideComponent);
+    fixture = TestBed.createComponent(NavigatorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

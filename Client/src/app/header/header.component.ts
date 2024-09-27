@@ -3,7 +3,7 @@ import { AuthService } from '../Services/auth.service';
 import { NgForm } from '@angular/forms';
 
 import { LoginModel } from '../Interfaces/LoginModel';
-import { User } from 'Models/User';
+import { User } from 'src/app/Models/User';
 import { take } from 'rxjs';
 
 @Component({
@@ -32,5 +32,9 @@ export class HeaderComponent implements OnInit {
       Password: form.value.password,
     };
     this.authService.login(model);
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

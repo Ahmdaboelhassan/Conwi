@@ -1,3 +1,16 @@
-<app-header></app-header>
-<app-home *ngIf="isAuth"></app-home>
-<app-Register *ngIf="!isAuth"></app-Register>
+<header>
+  <app-header></app-header>
+</header>
+<div class="container">
+  <main class="mx-auto md:w-3/5 sm:w-full h-screen px-2">
+    <app-Register *ngIf="!isAuth"></app-Register>
+    <app-home *ngIf="isAuth"></app-home>
+  </main>
+  <nav class="fixed bottom-0 w-full">
+    <div
+      class="md:w-3/5 sm:w-full absolute left-1/2 bottom-0 transform -translate-x-1/2"
+    >
+      <app-navigator *ngIf="isAuth"></app-navigator>
+    </div>
+  </nav>
+</div>

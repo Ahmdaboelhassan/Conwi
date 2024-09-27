@@ -1,8 +1,8 @@
-<header>
-  <div class="container">
+<div class="container">
+  <div class="holder mx-auto md:w-3/5 sm:w-full">
     <!-- Webiste Name -->
     <div class="header-left">
-      <h2>Conwi</h2>
+      <h2 class="m-0">Conwi</h2>
     </div>
     <div class="header-right" *ngIf="!isAuth">
       <form #form="ngForm" (ngSubmit)="Login(form)">
@@ -33,4 +33,4 @@
       </form>
     </div>
   </div>
-</header>
+</div>

@@ -45,7 +45,8 @@ namespace API.Controllers
             if (!AuthResponse.IsAuthenticated)
                 return BadRequest(AuthResponse.Messages);
 
-            return Ok(AuthResponse);
+           return Ok(AuthResponse);
+           
         }
 
         [HttpGet("GetEmailConfirmationUrl")]

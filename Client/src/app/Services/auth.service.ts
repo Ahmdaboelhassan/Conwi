@@ -4,7 +4,7 @@ import { RegisterModel } from '../Interfaces/RegisterModel';
 import { LoginModel } from '../Interfaces/LoginModel';
 import { AuthResponseModel } from '../Interfaces/AuthResponseModel';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
-import { User } from 'Models/User';
+import { User } from 'src/app/Models/User';
 import { environment } from 'src/environments/environment.development';
 import { ToastrService } from 'ngx-toastr';
 
@@ -84,7 +84,9 @@ export class AuthService {
   private manageError(resError) {
     const errorObject = resError.error;
     let errorList: string[] = [];
-    if (errorObject.errors) {
+    if (resError.status == 500) {
+      errorList.push('Internal Server Error');
+    } else if (errorObject.errors) {
       Object.keys(errorObject.errors).forEach((key) => {
         errorList.push(...errorObject.errors[key]);
       });

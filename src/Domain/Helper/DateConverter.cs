@@ -6,7 +6,7 @@ namespace Infrastructure.Helper
     {
         public DateConverter() 
         : base(
-            dateOnly => dateOnly.ToDateTime(TimeOnly.MinValue), // this will store in data base 
+            dateOnly =>  DateTime.SpecifyKind(dateOnly.ToDateTime(TimeOnly.MinValue), DateTimeKind.Utc), // this will store in data base 
             dateTime => DateOnly.FromDateTime(dateTime)         // this will retreive from database
         ){}
      

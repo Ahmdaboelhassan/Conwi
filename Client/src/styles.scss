@@ -6,11 +6,15 @@
 
 // regular style toast
 @import "ngx-toastr/toastr";
+* {
+  box-sizing: border-box;
+}
 
 :root {
-  --item-bg-color: #e0e0e0;
-  --item-bg-active-color: #ccc;
-  --main-color: #2196f3;
+  --item-bg-color: #fefefe;
+  --item-bg-active-color: #b9dcf8;
+  --main-color: #03a9f4;
+  --hover-color: #0381bb;
   --text-color: #fff;
 }
 ul {
