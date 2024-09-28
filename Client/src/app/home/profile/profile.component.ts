@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment.development';
   selector: 'app-profle',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
+  standalone: true,
 })
 export class ProfileComponent implements OnInit {
   @ViewChild('postForm', { static: false }) postForm: NgForm;

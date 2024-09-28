@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../Services/auth.service';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 import { LoginModel } from '../Interfaces/LoginModel';
 import { User } from 'src/app/Models/User';
-import { take } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
+  imports: [FormsModule],
 })
 export class HeaderComponent implements OnInit {
   isAuth: boolean;

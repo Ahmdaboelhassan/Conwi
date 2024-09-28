@@ -1,13 +1,15 @@
 ul {
   background-color: var(--item-bg-color);
 }
+
 .icon {
   color: var(--main-color);
   font-size: 22px;
   display: inline-block;
   padding: 10px 0;
-
-  &:is(:hover, .active) {
-    color: var(--hover-color);
-  }
+  cursor: pointer;
+}
+.icon:is(:hover),
+li:is(.active) .icon {
+  color: var(--hover-color);
 }

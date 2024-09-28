@@ -3,6 +3,7 @@ import {
   AbstractControl,
   FormControl,
   FormGroup,
+  ReactiveFormsModule,
   ValidatorFn,
   Validators,
 } from '@angular/forms';
@@ -12,8 +13,10 @@ import { AuthService } from '../Services/auth.service';
   selector: 'app-Register',
   templateUrl: './Register.component.html',
   styleUrls: ['./Register.component.scss'],
+  imports: [ReactiveFormsModule],
+  standalone: true,
 })
-export class AuthComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   showValiditionErrors: Boolean = false;
 
