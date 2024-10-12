@@ -1,14 +1,13 @@
-namespace Application.DTO.Response
+namespace Application.DTO.Response;
+public record UserProfile
 {
-    public record class UserProfile(
-         string FirstName,
-         string LastName,
-         string Country,
-         string City,
-         string Email,
-         string UserName,
-         DateOnly DateOfBirth,
-         string? PhotoURL
-    )
-    { }
+    public  string FirstName { get; set; }
+    public  string LastName { get; set; }
+    public  string Country { get; set; }
+    public  string City { get; set; }
+    public  string Email { get; set; }
+    public  string UserName { get; set; }
+    public  DateOnly DateOfBirth { get; set; }
+    public  string? PhotoURL { get; set; }
+    public  IEnumerable<ReadPost>? UserPosts { get; set; }
 }

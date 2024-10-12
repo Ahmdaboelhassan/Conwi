@@ -3,4 +3,4 @@ using MediatR;
 
 namespace Application.Users.Command.AddPost;
 
-public record AddPostCommand(PostModel PostModel) : IRequest<bool> {}
+public record CreatePostCommand(CreatePost PostModel) : IRequest<bool> {}

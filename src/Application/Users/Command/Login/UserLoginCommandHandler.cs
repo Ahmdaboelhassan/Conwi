@@ -55,6 +55,7 @@ namespace Application.Users.Command.Login
             _logger.LogInformation($"{userFromDb.UserName} Log In Successfully");
             return new AuthResponse
             {
+                Id = userFromDb.Id,
                 Messages = new List<string> { "You are signing in successfully" },
                 IsAuthenticated = true,
                 ExpireOn = tokenExpiresOn,

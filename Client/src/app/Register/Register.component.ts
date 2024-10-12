@@ -8,12 +8,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../Services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-Register',
   templateUrl: './Register.component.html',
   styleUrls: ['./Register.component.scss'],
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   standalone: true,
 })
 export class RegisterComponent implements OnInit {

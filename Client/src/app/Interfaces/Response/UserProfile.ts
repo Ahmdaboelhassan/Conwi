@@ -1,3 +1,5 @@
+import { ReadPost } from './ReadPost';
+
 export interface UserProfile {
   firstName: string;
   lastName: string;
@@ -7,4 +9,5 @@ export interface UserProfile {
   userName: string;
   dateOfBirth: Date;
   photoURL?: string;
+  userPosts?: ReadPost[];
 }

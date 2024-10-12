@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegisterModel } from '../Interfaces/RegisterModel';
-import { LoginModel } from '../Interfaces/LoginModel';
-import { AuthResponseModel } from '../Interfaces/AuthResponseModel';
+import { RegisterModel } from '../Interfaces/Request/RegisterModel';
+import { LoginModel } from '../Interfaces/Request/LoginModel';
+import { AuthResponseModel } from '../Interfaces/Response/AuthResponseModel';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { User } from 'src/app/Models/User';
 import { environment } from 'src/environments/environment.development';
@@ -23,7 +23,6 @@ export class AuthService {
 
   register(model: RegisterModel): Subscription {
     const url = environment.baseUrl + 'Auth/Register';
-
     return this.http.post<AuthResponseModel>(url, model).subscribe({
       next: (res) => this.manageLogin(res),
       error: (resError) => this.manageError(resError),
@@ -44,6 +43,7 @@ export class AuthService {
       let localStorageUser = JSON.parse(localStorage.getItem('user'));
 
       let singInUser = new User(
+        localStorageUser.Id,
         localStorageUser.Username,
         localStorageUser.Email,
         localStorageUser._token,
@@ -70,6 +70,7 @@ export class AuthService {
 
   private manageLogin(response: AuthResponseModel) {
     let registerdUser: User = new User(
+      response.id,
       response.userName,
       response.email,
       response.token,

@@ -7,6 +7,7 @@ import {
   faBell,
   faRightFromBracket,
   faGear,
+  faPen,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Injectable({ providedIn: 'root' })
@@ -19,5 +20,6 @@ export class IconService {
     Notification: faBell,
     Logout: faRightFromBracket,
     Settings: faGear,
+    Create: faPen,
   };
 }

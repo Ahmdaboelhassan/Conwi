@@ -1,0 +1,35 @@
+<div class="post-box p-7" #postBox>
+  <form #postForm="ngForm" (ngSubmit)="SubmitForm(postForm)">
+    <div class="text-end py-2">
+      <button class="btn btn-outline-danger rounded-lg" (click)="CloseDialog()">
+        X
+      </button>
+    </div>
+    <div>
+      <h6 class="text-blue-600">Create New Post</h6>
+      <textarea
+        ngModel
+        name="content"
+        class="w-100 p-4 border-solid border border-indigo-700 outline-none resize-none"
+        maxlength="100"
+        rows="13"
+      ></textarea>
+      <p class="text-primary" id="charIndcator">
+        Characters left : {{ textAreaAvailbleChars }}
+      </p>
+    </div>
+    <div class="post-photo d-flex">
+      <input
+        type="file"
+        ngModel
+        name="photo"
+        accept=".jpeg,.jpg,.png"
+        class="form-control w-75"
+        (change)="chooseImg($event)"
+      />
+      <button class="btn btn-outline-primary w-25 ms-2" type="submit">
+        Post
+      </button>
+    </div>
+  </form>
+</div>

@@ -42,6 +42,17 @@ public class Repository<T> : IReposetory<T> where T : class
 
         return query.ToListAsync();
     }
+    public Task<List<T>> GetAll(params string[]? includes)
+    {
+        var query = _set.AsNoTracking();
+
+        foreach (var item in includes)
+        {
+            query = query.Include(item);
+        }
+
+        return query.ToListAsync();
+    }
     public Task<T> DapperGetAsync(string table, string? where = null)
     {
         var conn = CreateDapperConnection();

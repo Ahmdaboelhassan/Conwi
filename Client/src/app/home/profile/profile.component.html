@@ -25,51 +25,21 @@
         <li>{{ user.dateOfBirth }}</li>
       </ul>
       <button
-        class="btn btn-outline-primary"
-        (click)="enablePostArea()"
-        *ngIf="!PostArea"
+        mat-button
+        class="fixed right-4 bottom-16 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        (click)="openDialog()"
       >
-        Add Post
+        <fa-icon class="icon" [icon]="icons.Create"></fa-icon>
+        Create Post
       </button>
     </div>
   </div>
-  <div class="post-box" #postBox *ngIf="PostArea">
-    <form #postForm="ngForm">
-      <div class="text-end py-2">
-        <button class="btn btn-outline-danger" (click)="disablePostArea()">
-          X
-        </button>
-      </div>
-      <div>
-        <textarea
-          ngModel
-          name="content"
-          class="w-100"
-          maxlength="100"
-        ></textarea>
-        <p class="text-primary" id="charIndcator">
-          Characters left : {{ textAreaAvailbleChars }}
-        </p>
-      </div>
-      <div class="post-photo d-flex">
-        <input
-          type="file"
-          ngModel
-          name="photo"
-          accept=".jpeg,.jpg,.png"
-          class="form-control w-75"
-        />
-        <button class="btn btn-outline-primary w-25 ms-2" type="submit">
-          Post
-        </button>
-      </div>
-    </form>
-  </div>
+
+  <br />
   <hr />
-  <div class="row">
-    <div>posts</div>
-    <div>posts</div>
-    <div>posts</div>
-    <div>posts</div>
-  </div>
+
+  @if (user && user.userPosts.length > 0) { @for (post of user.userPosts; track
+  post.id) {
+  <app-post [post]="post" />
+  } }
 </div>

@@ -58,7 +58,7 @@ namespace Application.Users.Command.Register
 
             return new AuthResponse
             {
-
+                Id = newUser.Id,
                 Messages = new List<string> { "User has been registered successfully" },
                 Email = newUser.Email,
                 UserName = newUser.UserName,

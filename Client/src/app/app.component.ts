@@ -6,6 +6,8 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './Register/Register.component';
 import { NavigatorComponent } from './home/navigator/navigator.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LoaderComponent } from './loader/loader.component';
+import { LoaderService } from './Services/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -19,18 +21,25 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     NavigatorComponent,
     RouterLink,
     RouterLinkActive,
+    LoaderComponent,
   ],
 })
 export class AppComponent implements OnInit {
-  isAuth = false;
+  isAuth: boolean = false;
+  isloading: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private loaderService: LoaderService
+  ) {}
 
   ngOnInit(): void {
     this.authService.user$.subscribe({
-      next: (user: User) => {
-        this.isAuth = !!user;
-      },
+      next: (user: User) => (this.isAuth = !!user),
+    });
+
+    this.loaderService.isLoading$.subscribe({
+      next: (isloadingResult: boolean) => (this.isloading = isloadingResult),
     });
   }
 }
