@@ -1,5 +1,8 @@
-<main>
+<main class="relative">
   <router-outlet />
+  @if (isloading) {
+  <app-loader></app-loader>
+  }
 </main>
 <nav
   class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-screen border-solid border border-stone-800"
@@ -8,5 +11,3 @@
     <app-navigator />
   </div>
 </nav>
-
-<!--  -->

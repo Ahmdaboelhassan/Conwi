@@ -14,12 +14,15 @@ namespace Infrastructure.Repository
         {
             Users = new UserRepo(db , config);
             Posts = new PostRepo(db, config);
+            UserFollow = new UserFollowRepo(db , config);
             _db = db;
         }
 
         public IUserRepo Users { get; private set; }
 
         public IPostRepo Posts { get; private set; }
+
+        public IUserFollowRepo UserFollow{ get; private set; }
 
         public IDbTransaction StartTransaction()
         {

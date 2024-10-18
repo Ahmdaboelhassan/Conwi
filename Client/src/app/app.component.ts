@@ -21,25 +21,17 @@ import { LoaderService } from './Services/loader.service';
     NavigatorComponent,
     RouterLink,
     RouterLinkActive,
-    LoaderComponent,
   ],
 })
 export class AppComponent implements OnInit {
   isAuth: boolean = false;
   isloading: boolean = false;
 
-  constructor(
-    private authService: AuthService,
-    private loaderService: LoaderService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.user$.subscribe({
       next: (user: User) => (this.isAuth = !!user),
-    });
-
-    this.loaderService.isLoading$.subscribe({
-      next: (isloadingResult: boolean) => (this.isloading = isloadingResult),
     });
   }
 }

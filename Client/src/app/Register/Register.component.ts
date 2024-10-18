@@ -9,22 +9,30 @@ import {
 } from '@angular/forms';
 import { AuthService } from '../Services/auth.service';
 import { CommonModule } from '@angular/common';
+import { LoaderComponent } from '../loader/loader.component';
+import { LoaderService } from '../Services/loader.service';
 
 @Component({
   selector: 'app-Register',
   templateUrl: './Register.component.html',
   styleUrls: ['./Register.component.scss'],
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, LoaderComponent],
   standalone: true,
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   showValiditionErrors: Boolean = false;
-
-  constructor(private authService: AuthService) {}
+  isloading: boolean = false;
+  constructor(
+    private authService: AuthService,
+    private loaderService: LoaderService
+  ) {}
 
   ngOnInit(): void {
     this.intializeForm();
+    this.loaderService.isLoading$.subscribe({
+      next: (isloadingResult: boolean) => (this.isloading = isloadingResult),
+    });
   }
 
   intializeForm() {

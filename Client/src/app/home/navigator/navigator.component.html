@@ -1,4 +1,4 @@
-<ul class="flex text-center">
+<ul class="flex text-center" #navigator>
   <li
     class="flex-1"
     routerLink="timeline"
@@ -15,7 +15,12 @@
   >
     <fa-icon class="icon" [icon]="icons.Profile"></fa-icon>
   </li>
-  <li class="flex-1" routerLink="dddd" routerLinkActive="active" title="Search">
+  <li
+    class="flex-1"
+    routerLink="explore"
+    routerLinkActive="active"
+    title="Search"
+  >
     <fa-icon class="icon" [icon]="icons.Search"></fa-icon>
   </li>
   <li class="flex-1" title="Notification">
