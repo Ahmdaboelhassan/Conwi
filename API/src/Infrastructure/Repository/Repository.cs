@@ -83,4 +83,20 @@ public class Repository<T> : IReposetory<T> where T : class
     }
 
     private IDbConnection CreateDapperConnection() => new SqlConnection(_connectionStrings);
+
+    public async Task<IEnumerable<O>> SelectAll<O>(Expression<Func<T, bool>> criteria, Expression<Func<T, O>> columns, params string[]? includes)
+    {
+        var query = _set
+            .Where(criteria)
+            .AsNoTracking();
+
+        foreach (var item in includes)
+        {
+            query = query.Include(item);
+        }
+
+        return await query
+            .Select(columns)
+            .ToListAsync(); 
+     }
 }

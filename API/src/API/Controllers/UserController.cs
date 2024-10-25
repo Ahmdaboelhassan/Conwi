@@ -3,6 +3,7 @@ using Application.Users.Command.AddPost;
 using Application.Users.Command.UploadProfilePhoto;
 using Application.Users.Queries.GetFollowingPosts;
 using Application.Users.Queries.GetUserPosts;
+using Application.Users.Queries.GetUsers;
 using Application.Users.Queries.UserProfileQuery;
 using Domain.Entity;
 using MediatR;
@@ -40,6 +41,13 @@ public class UserController : BaseController
     public async Task<IActionResult> FollowingPosts(string userId){
 
         return Ok(await _mediator.Send(new GetFollowingPostsQuery(userId)));
+    }
+
+    [HttpGet]
+    [Route("GetUsers")]
+    public async Task<IActionResult> GetUsers(string criteria){
+
+        return Ok(await _mediator.Send(new GetUsersQuery(criteria)));
     }
 
     [HttpPost]

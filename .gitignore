@@ -2,6 +2,7 @@
 **bin/
 **Debug/
 .vs/
+.vscode/
 Conwi/.vs/
 .github/
 **.json

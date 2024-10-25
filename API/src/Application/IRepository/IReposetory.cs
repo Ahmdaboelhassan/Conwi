@@ -8,6 +8,7 @@ public interface IReposetory<T>
     // Queries
     Task<T> GetAsync(Expression<Func<T,bool>> criteria, params string[] includes);
     Task<List<T>> GetAll(Expression<Func<T, bool>> criteria, params string[]? includes);
+    Task<IEnumerable<O>> SelectAll<O>(Expression<Func<T, bool>> criteria, Expression<Func<T, O>> columns, params string[]? includes);
     Task<List<T>> GetAll(params string[]? includes);
     Task<T> DapperGetAsync(string table, string? where = null);
     Task<IEnumerable<T>> DapperGetAllAsync(string table , string? where = "");

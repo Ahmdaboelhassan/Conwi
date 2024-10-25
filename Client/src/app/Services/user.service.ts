@@ -35,4 +35,22 @@ export class UserService {
     const url = environment.baseUrl + `User/UploadProfilePhoto`;
     return this.http.post<boolean>(url, form);
   }
+  GetUsers(criteria = null) {
+    let url = environment.baseUrl + `User/GetUsers?criteria=${criteria}`;
+    return this.http.get(url);
+  }
+
+  GetUsersOtherUser(userId) {
+    let url = environment.baseUrl + `User/GetOtherUsers/${userId}`;
+    return this.http.get(url);
+  }
+
+  followUser(sourceId, destId) {
+    let url = environment.baseUrl + `User/GetOtherUsers`;
+    let body = {
+      sId: sourceId,
+      dId: destId,
+    };
+    return this.http.post(url, body);
+  }
 }
