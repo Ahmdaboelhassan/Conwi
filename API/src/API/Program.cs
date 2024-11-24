@@ -74,6 +74,8 @@ app.UseSerilogRequestLogging();
 // app.UseCors(options => options.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 app.UseCors("AllowedAudience");
 
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

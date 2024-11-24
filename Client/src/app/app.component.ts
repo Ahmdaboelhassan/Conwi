@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './Services/auth.service';
-import { User } from 'src/app/Models/User';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './Register/Register.component';
 import { NavigatorComponent } from './home/navigator/navigator.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { LoaderComponent } from './loader/loader.component';
-import { LoaderService } from './Services/loader.service';
+import { AuthService } from './_services/auth.service';
+import { User } from './_models/User';
 
 @Component({
   selector: 'app-root',

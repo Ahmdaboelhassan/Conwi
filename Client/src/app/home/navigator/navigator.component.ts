@@ -1,7 +1,7 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IconService } from 'src/app/Services/Icons.service';
+import { IconService } from 'src/app/_services/Icons.service';
 
 @Component({
   selector: 'app-navigator',

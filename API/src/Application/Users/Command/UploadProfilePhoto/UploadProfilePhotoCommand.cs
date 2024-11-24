@@ -1,6 +1,5 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 
-namespace Application.Users.Command.UploadProfilePhoto;
+namespace Application.Users.Command;
 
-public record UploadProfilePhotoCommand(string email, IFormFile photo) : IRequest<bool>;
+public record UploadProfilePhotoCommand(DTO.Request.UploadProfilePhoto model) : IRequest<bool>;

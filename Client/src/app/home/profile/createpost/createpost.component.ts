@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -14,10 +9,10 @@ import {
   MatDialogRef,
 } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
-import { exhaustMap, switchMap, take } from 'rxjs';
-import { User } from 'src/app/Models/User';
-import { AuthService } from 'src/app/Services/auth.service';
-import { UserService } from 'src/app/Services/user.service';
+import { take } from 'rxjs';
+import { User } from 'src/app/_models/User';
+import { AuthService } from 'src/app/_services/auth.service';
+import { PostService } from 'src/app/_services/post.service';
 @Component({
   selector: 'app-createpost',
   standalone: true,
@@ -41,7 +36,7 @@ export class CreatepostComponent implements OnInit {
 
   constructor(
     private readonly dialogRef: MatDialogRef<CreatepostComponent>,
-    private readonly userService: UserService,
+    private readonly postService: PostService,
     private readonly authService: AuthService,
     private readonly toastrService: ToastrService
   ) {}
@@ -69,7 +64,7 @@ export class CreatepostComponent implements OnInit {
     formData.append('photo', this.postImg);
     formData.append('userId', this.user.Id);
 
-    this.userService.CreatePost(formData).subscribe({
+    this.postService.CreatePost(formData).subscribe({
       next: (res) => {
         form.reset();
         this.CloseDialog();

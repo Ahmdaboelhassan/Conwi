@@ -19,7 +19,7 @@ public class Repository<T> : IReposetory<T> where T : class
         _set = db.Set<T>();
         _connectionStrings = config.GetConnectionString("DefaultConnection");
     }
-    public Task<T> GetAsync(Expression<Func<T, bool>> criteria, params string[] includes)
+    public Task<T> Get(Expression<Func<T, bool>> criteria, params string[] includes)
     {
        var query = _set.Where(criteria);
         foreach (var item in includes) { 
@@ -64,9 +64,9 @@ public class Repository<T> : IReposetory<T> where T : class
         return conn.QueryAsync<T>($"SELECT * FROM {table} WHERE {where}"); ;
     }
 
-    public bool Exists(Expression<Func<T, bool>> criteria)
+    public async Task<bool> Exists(Expression<Func<T, bool>> criteria)
     {
-        return _set.Where(criteria).Count() > 0;
+        return await  _set.AnyAsync(criteria);
     }
     public Task AddAsync(T element)
     {

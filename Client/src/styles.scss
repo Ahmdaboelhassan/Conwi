@@ -13,8 +13,8 @@
 :root {
   --item-bg-color: #fefefe;
   --item-bg-active-color: #b9dcf8;
-  --main-color: #03a9f4;
-  --hover-color: #026593;
+  --main-color: rgb(164, 100, 255);
+  --hover-color: rgb(132, 84, 199);
   --text-color: #fff;
 }
 ul {
@@ -25,5 +25,23 @@ body {
   padding: 0;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.loading-holder {
+  height: calc(100vh - 94.5px);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  top: 50px;
+  left: 0;
+  background-color: var(--text-color);
+}

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../Services/auth.service';
 import { FormsModule, NgForm } from '@angular/forms';
-
-import { LoginModel } from '../Interfaces/Request/LoginModel';
-import { User } from 'src/app/Models/User';
-import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { IconService } from '../Services/Icons.service';
+import { AuthService } from '../_services/auth.service';
+import { IconService } from '../_services/Icons.service';
+import { User } from '../_models/User';
+import { LoginModel } from '../_interface/Request/LoginModel';
 
 @Component({
   standalone: true,

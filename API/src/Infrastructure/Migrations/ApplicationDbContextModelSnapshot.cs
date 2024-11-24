@@ -116,6 +116,9 @@ namespace Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
+                    b.Property<int>("Likes")
+                        .HasColumnType("integer");
+
                     b.Property<string>("UserPostedId")
                         .IsRequired()
                         .HasColumnType("text");

@@ -1,5 +1,3 @@
-﻿using Domain.Entity;
+﻿namespace Application.IRepository;
 
-namespace Application.IRepository;
-
-public interface IPostRepo : IReposetory<Post>{}
+public interface IPostRepo : IReposetory<Domain.Entity.Post> {}

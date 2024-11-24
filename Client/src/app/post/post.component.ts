@@ -1,6 +1,9 @@
-import { Component, input } from '@angular/core';
-import { ReadPost } from 'src/app/Interfaces/Response/ReadPost';
+import { Component, input, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
+import { ReadPost } from '../_interface/Response/ReadPost';
+import { PostService } from '../_services/post.service';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-post',
@@ -12,4 +15,22 @@ import { environment } from 'src/environments/environment.development';
 export class PostComponent {
   post = input<ReadPost>();
   defualtImg = environment.defualtProfilePhoto;
+  userId: string;
+
+  constructor(
+    private postService: PostService,
+    private toastrService: ToastrService,
+    private authService: AuthService
+  ) {
+    this.userId = this.authService.getCurrentUserId();
+  }
+
+  DeletePost(postid: number, e) {
+    this.postService.DeletePost(postid, this.userId).subscribe({
+      next: () => {
+        this.toastrService.success('Post Deleted Successfully');
+        e.target.closest('#post').remove();
+      },
+    });
+  }
 }

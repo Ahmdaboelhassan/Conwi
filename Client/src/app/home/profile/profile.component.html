@@ -1,35 +1,88 @@
 <div class="container">
-  <div class="row mt-4">
-    <div class="col-3">
+  <div class="grid grid-cols-12 mt-10 justify-between">
+    <div class="col-span-12 lg:col-span-3 w-[200px] h-[200px] relative">
       <img
         class="mw-100"
-        src="{{ user ? user.photoURL : defualtPhoto }}"
+        src="{{ userProfile ? userProfile.photoURL : defualtPhoto }}"
         alt="Profile"
+        id="Profile"
       />
+      @if(isCuurentUser){
+      <div class="group">
+        <input
+          type="file"
+          id="UploadProfilePic"
+          hidden
+          (change)="UploadProfilePicture($event)"
+        />
+        <label
+          class="absolute w-100 text-white text-center bottom-0 bg-gray-500 cursor-grab"
+          for="UploadProfilePic"
+          ><i class="fa-solid fa-camera group-hover:text-purple-400"></i
+        ></label>
+      </div>
+      }
     </div>
-    <div class="col-9" *ngIf="!user">
-      <h4 class="text-primary">User Full Name</h4>
+    <div class="col-span-12 lg:col-span-9" *ngIf="!userProfile">
+      <h4 class="text-purple-400">User Full Name</h4>
       <ul class="text-secondary">
         <li>UserName</li>
         <li>Email</li>
-        <li>Country, City</li>
+        <li>Location</li>
         <li>DateOfBirth</li>
+        <li>Following</li>
+        <li>Followers</li>
       </ul>
     </div>
-    <div class="col-9" *ngIf="user">
-      <h4 class="text-primary">{{ user.firstName }} {{ user.lastName }}</h4>
-      <ul class="text-secondary">
-        <li>{{ user.userName }}</li>
-        <li>{{ user.email }}</li>
-        <li>{{ user.country }}, {{ user.city }}</li>
-        <li>{{ user.dateOfBirth }}</li>
-      </ul>
+    <div
+      class="col-span-12 lg:col-span-9 relative flex justify-between"
+      *ngIf="userProfile"
+    >
+      <div class="w-3/4">
+        <h3 class="text-purple-400 mb-1">
+          {{ userProfile.firstName | uppercase }}
+          {{ userProfile.lastName | uppercase }}
+        </h3>
+        <ul class="text-gray-500">
+          <li class="mb-2">
+            <i class="fas fa-user"></i> {{ "@" + userProfile.userName }}
+          </li>
+          <li class="mb-2">
+            <i class="fa-solid fa-envelope"></i> {{ userProfile.email }}
+          </li>
+          <li class="mb-2">
+            <i class="fa-solid fa-map"></i> {{ userProfile.country }},
+            {{ userProfile.city }}
+          </li>
+          <li class="mb-2">
+            <i class="fa-solid fa-cake-candles"></i>
+            {{ userProfile.dateOfBirth }}
+          </li>
+          <li>
+            <span class="text-gray-800">{{ userProfile.following }}</span>
+            Following
+            <span class="text-gray-800">{{ userProfile.followers }}</span>
+            Followers
+          </li>
+        </ul>
+      </div>
+      @if(!isCuurentUser){
+      <div class="w-1/4">
+        <button
+          type="button"
+          class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+          (click)="FollowUser($event)"
+        >
+          {{ userProfile.isFollowing ? "Following" : "Follow" }}
+        </button>
+      </div>
+      }
       <button
         mat-button
-        class="fixed right-4 bottom-16 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        class="fixed right-4 bottom-16 text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
         (click)="openDialog()"
       >
-        <fa-icon class="icon" [icon]="icons.Create"></fa-icon>
+        <i class="fa-solid fa-circle-plus"></i>
         Create Post
       </button>
     </div>
@@ -37,9 +90,14 @@
 
   <br />
   <hr />
-
-  @if (user && user.userPosts.length > 0) { @for (post of user.userPosts; track
-  post.id) {
+  @if (userProfile && userProfile.userPosts){ @for (post of
+  userProfile.userPosts; track post.id) {
   <app-post [post]="post" />
-  } }
+  } } @if (isloading) {
+  <div
+    class="overlay flex justify-center items-start bg-white bg-opacity-80 w-100 h-100 top-0 absolute left-0 pt-16"
+  >
+    <app-loader></app-loader>
+  </div>
+  }
 </div>

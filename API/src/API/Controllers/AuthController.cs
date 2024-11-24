@@ -4,12 +4,12 @@ using Application.DTO.Response;
 using Application.IServices;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using Application.Users.Command.Register;
-using Application.Users.Command.Login;
-using Application.Users.Queries.GetEmailConfirmationToken;
-using Application.Users.Queries.GetPasswordResetToken;
-using Application.Users.Command.ConfirmEmail;
-using Application.Users.Command.ResetPassword;
+using Application.Auth.Command.Register;
+using Application.Auth.Command.Login;
+using Application.Auth.Queries.GetEmailConfirmationToken;
+using Application.Auth.Queries.GetPasswordResetToken;
+using Application.Auth.Command.ConfirmEmail;
+using Application.Auth.Command.ResetPassword;
 
 namespace API.Controllers
 {

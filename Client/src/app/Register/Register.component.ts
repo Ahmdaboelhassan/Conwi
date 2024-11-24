@@ -7,10 +7,10 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { AuthService } from '../Services/auth.service';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from '../loader/loader.component';
-import { LoaderService } from '../Services/loader.service';
+import { AuthService } from '../_services/auth.service';
+import { LoaderService } from '../_services/loader.service';
 
 @Component({
   selector: 'app-Register',

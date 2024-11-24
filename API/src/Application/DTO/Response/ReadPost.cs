@@ -8,5 +8,6 @@ public class ReadPost
     public string userEmail { get; set; }
     public string userId { get; set; }
     public string userPhoto { get; set; }
+    public int likes { get; set; }
     public DateTime Time { get; set; }
 }

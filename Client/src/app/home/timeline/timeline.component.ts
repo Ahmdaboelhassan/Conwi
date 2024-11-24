@@ -1,31 +1,41 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { PostComponent } from '../../post/post.component';
-import { ReadPost } from 'src/app/Interfaces/Response/ReadPost';
-import { UserService } from 'src/app/Services/user.service';
-import { AuthService } from 'src/app/Services/auth.service';
-import { User } from 'src/app/Models/User';
+import { LoaderComponent } from 'src/app/loader/loader.component';
+import { ReadPost } from 'src/app/_interface/Response/ReadPost';
+import { AuthService } from 'src/app/_services/auth.service';
+import { LoaderService } from 'src/app/_services/loader.service';
+import { User } from 'src/app/_models/User';
+import { PostService } from 'src/app/_services/post.service';
 
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
   standalone: true,
-  imports: [PostComponent],
+  imports: [PostComponent, LoaderComponent],
 })
 export class TimelineComponent implements OnInit {
   posts = signal<ReadPost[]>([]);
+  isloading: boolean = false;
+
   constructor(
-    private userService: UserService,
-    private authService: AuthService
+    private postService: PostService,
+    private authService: AuthService,
+    private loaderService: LoaderService
   ) {}
+
   ngOnInit(): void {
     this.authService.user$.subscribe({
       next: (user: User) => {
-        this.userService.GetFollowingPosts(user.Id).subscribe({
+        this.postService.GetFollowingPosts(user.Id).subscribe({
           next: (res: ReadPost[]) => this.posts.set(res),
           error: (err) => console.log(err),
         });
       },
+    });
+
+    this.loaderService.isLoading$.subscribe({
+      next: (isloadingResult: boolean) => (this.isloading = isloadingResult),
     });
   }
 }

@@ -1,6 +1,5 @@
 ﻿using Application.Helper;
 using Application.IServices;
-using AutoMapper;
 using Domain.Entity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;

@@ -51,7 +51,8 @@ namespace Infrastructure
                     ValidateLifetime = true,
                     ValidIssuer = Config["JWT:Issuer"],
                     ValidAudience = Config["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Config["JWT:Key"]))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Config["JWT:Key"])),
+                    ClockSkew = TimeSpan.Zero
                 };
             });
             services.Configure<JWT>(Config.GetSection("JWT"));

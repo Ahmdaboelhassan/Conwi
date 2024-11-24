@@ -17,11 +17,11 @@ internal class UploadProfilePhotoCommandHandler : IRequestHandler<UploadProfileP
     }
     public async Task<bool> Handle(UploadProfilePhotoCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userManger.FindByEmailAsync(request.email);
+        var user = await _userManger.FindByIdAsync(request.model.userId);
 
         if (user is null) return false;
 
-        var result = await _photoService.UploadProfilePhotoAsync(user.UserName, request.photo);
+        var result = await _photoService.UploadProfilePhotoAsync(user.UserName, request.model.profilePhoto);
 
         if (result.Error is not null) return false;
 

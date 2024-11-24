@@ -15,6 +15,7 @@ namespace Domain.Entity
         [Required]
         public string UserPostedId { get; set; }
         [ForeignKey(nameof(UserPostedId))]
+        public int Likes { get; set; }
         public AppUser UserPosted { get; set; }
     }
 }

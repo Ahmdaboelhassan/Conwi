@@ -4,12 +4,12 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { loadingInterceptor } from './app/interceptor/loading.interceptor';
+import { authInterceptor } from './app/_interceptor/auth.interceptor';
+import { loadingInterceptor } from './app/_interceptor/loading.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideHttpClient(withInterceptors([loadingInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, loadingInterceptor])),
     provideRouter(routes),
     provideAnimations(),
     provideToastr({

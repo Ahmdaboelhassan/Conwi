@@ -7,7 +7,10 @@ public record UserProfile
     public  string City { get; set; }
     public  string Email { get; set; }
     public  string UserName { get; set; }
+    public  int Following { get; set; }
+    public  int Followers { get; set; }
     public  DateOnly DateOfBirth { get; set; }
-    public  string? PhotoURL { get; set; }
+    public string? PhotoURL { get; set; }
+    public bool? IsFollowing { get; set; }
     public  IEnumerable<ReadPost>? UserPosts { get; set; }
 }

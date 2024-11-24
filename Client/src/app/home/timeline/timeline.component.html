@@ -1,3 +1,7 @@
 @for (post of posts(); track post.id) {
 <app-post [post]="post" />
+} @if (isloading) {
+<div class="loading-holder">
+  <app-loader></app-loader>
+</div>
 }
