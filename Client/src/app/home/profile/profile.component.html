@@ -93,11 +93,12 @@
   @if (userProfile && userProfile.userPosts){ @for (post of
   userProfile.userPosts; track post.id) {
   <app-post [post]="post" />
-  } } @if (isloading) {
+  } }
   <div
-    class="overlay flex justify-center items-start bg-white bg-opacity-80 w-100 h-100 top-0 absolute left-0 pt-16"
+    id="loader"
+    [ngClass]="isloading ? 'flex' : 'hidden'"
+    class="overlay justify-center items-start bg-white bg-opacity-80 w-100 h-100 top-0 absolute left-0 pt-16"
   >
     <app-loader></app-loader>
   </div>
-  }
 </div>

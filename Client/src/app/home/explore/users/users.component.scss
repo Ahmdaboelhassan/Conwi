@@ -1,24 +1,13 @@
-/* HTML: <div class="loader"></div> */
 .loader {
-  width: 40px;
-  height: 22px;
-  border-radius: 200px 200px 0 0;
-  -webkit-mask: repeating-radial-gradient(
-    farthest-side at bottom,
-    #0000 0,
-    #000 1px 12%,
-    #0000 calc(12% + 1px) 20%
-  );
-  background: radial-gradient(
-      farthest-side at bottom,
-      var(--main-color) 0 95%,
-      #0000 0
-    )
-    bottom/0% 0% no-repeat #ddd;
-  animation: l10 2s infinite steps(6);
+  width: 30px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 6px solid transparent;
+  border-right-color: #fff;
+  animation: l2 1s infinite linear;
 }
-@keyframes l10 {
-  100% {
-    background-size: 120% 120%;
+@keyframes l2 {
+  to {
+    transform: rotate(1turn);
   }
 }

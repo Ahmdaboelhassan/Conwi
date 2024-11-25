@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { take } from 'rxjs';
@@ -25,6 +25,7 @@ import { LoaderService } from 'src/app/_services/loader.service';
     FormsModule,
     FontAwesomeModule,
     LoaderComponent,
+    NgClass,
   ],
   standalone: true,
 })

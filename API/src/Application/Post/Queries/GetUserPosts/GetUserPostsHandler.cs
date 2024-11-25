@@ -17,15 +17,17 @@ public class GetUserPostsHandler : IRequestHandler<GetUserPostsQuery, IEnumerabl
 
         return posts.Select(p => new ReadPost
         {
-            Id = p.id,
+            id = p.id,
             userId = p.UserPostedId,
             userEmail = p.UserPosted.Email,
             username = p.UserPosted.UserName,
             userPhoto = p.UserPosted.PhotoURL,
             content = p.content,
             imgUrl = p.photoURL,
-            Time = p.timePosted,
-            likes = p.Likes
-        }).OrderByDescending(p => p.Time);
+            time = p.timePosted,
+            firstName = p.UserPosted.FirstName,
+            lastName = p.UserPosted.LastName,
+            likes = p.Likes,
+        }).OrderByDescending(p => p.time);
     }
 }

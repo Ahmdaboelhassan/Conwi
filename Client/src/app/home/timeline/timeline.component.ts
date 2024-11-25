@@ -6,13 +6,14 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { LoaderService } from 'src/app/_services/loader.service';
 import { User } from 'src/app/_models/User';
 import { PostService } from 'src/app/_services/post.service';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-timeline',
   templateUrl: './timeline.component.html',
   styleUrls: ['./timeline.component.scss'],
   standalone: true,
-  imports: [PostComponent, LoaderComponent],
+  imports: [PostComponent, LoaderComponent, NgClass],
 })
 export class TimelineComponent implements OnInit {
   posts = signal<ReadPost[]>([]);

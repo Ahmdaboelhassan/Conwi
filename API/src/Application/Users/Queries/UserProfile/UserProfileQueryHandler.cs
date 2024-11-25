@@ -27,31 +27,41 @@ public class UserProfileQueryHandler : IRequestHandler<UserProfileQuery, UserPro
 
         if (user is null) return null;
         
+        // Get profile
         var userProfile =  _mapper.Map<UserProfile>(user);
 
         var userFollow = await _unitOfWork.UserFollow.GetAll(uf => uf.SourceUserId == user.Id || uf.DistinationUserId == user.Id);
 
+        // Get Following and Followers
         if (request.userId != userprofileId)
             userProfile.IsFollowing = userFollow.Any(d => d.DistinationUserId == userprofileId);
 
         userProfile.Following = userFollow.Count(uf => uf.SourceUserId == userprofileId);
         userProfile.Followers = userFollow.Count(uf => uf.DistinationUserId == userprofileId);
 
-
+        // Get Users Likes 
         var userPosts = await _unitOfWork.Posts.GetAll(x => x.UserPostedId == user.Id);
+        var usersPostsIds = userPosts.Select(p => p.id);
+        var userLiked = await _unitOfWork.UserLike.SelectAll(x => usersPostsIds.Any(id => id == x.PostId) &&  x.UserId == request.userId , p => p.PostId);
+
         userProfile.UserPosts = userPosts.Select(p => new ReadPost {
-             Id = p.id,
-             content = p.content,
-             imgUrl = p.photoURL,
-             userEmail = user.Email,
-             userId = user.Id,
-             username = user.UserName,
-             userPhoto = user.PhotoURL,
-             Time = p.timePosted
+            id = p.id,
+            userId = p.UserPostedId,
+            userEmail = user.Email,
+            username = user.UserName,
+            userPhoto = user.PhotoURL,
+            content = p.content,
+            imgUrl = p.photoURL,
+            time = p.timePosted,
+            firstName = user.FirstName,
+            lastName = user.LastName,
+            likes = p.Likes,
+            isLiked = userLiked.Any(pId => pId == p.id)
+
         })
-        .OrderByDescending(p => p.Time)
+        .OrderByDescending(p => p.time)
         .AsEnumerable();
         
         return userProfile;
-    }
+        }
 }

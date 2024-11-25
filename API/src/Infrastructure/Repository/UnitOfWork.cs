@@ -15,6 +15,7 @@ namespace Infrastructure.Repository
             Users = new UserRepo(db , config);
             Posts = new PostRepo(db, config);
             UserFollow = new UserFollowRepo(db , config);
+            UserLike = new UserLikeRepo(db , config);
             _db = db;
         }
 
@@ -23,6 +24,7 @@ namespace Infrastructure.Repository
         public IPostRepo Posts { get; private set; }
 
         public IUserFollowRepo UserFollow{ get; private set; }
+        public IUserLikeRepo UserLike{ get; private set; }
 
         public IDbTransaction StartTransaction()
         {

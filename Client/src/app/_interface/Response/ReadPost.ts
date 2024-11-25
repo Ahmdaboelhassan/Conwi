@@ -5,5 +5,9 @@ export interface ReadPost {
   username: string;
   userEmail: string;
   userId: string;
+  likes: number;
+  firstName: string;
+  lastName: string;
+  isLiked: boolean;
   userPhoto: string;
 }

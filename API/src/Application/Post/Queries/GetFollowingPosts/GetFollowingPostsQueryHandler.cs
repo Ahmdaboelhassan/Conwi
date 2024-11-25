@@ -26,16 +26,23 @@ public class GetFollowingPostsQueryHandler : IRequestHandler<GetFollowingPostsQu
         var posts = await _unitOfWork.Posts
            .GetAll(p => FollowingUsersIds.Any(x => x == p.UserPostedId), "UserPosted");
 
+        var userLiked = await _unitOfWork.UserLike.SelectAll(x => x.UserId == request.userId , p => p.PostId);
+
         return posts.Select(p => new ReadPost
         {
-            Id = p.id,
+            id = p.id,
             userId = p.UserPostedId,
             userEmail = p.UserPosted.Email,
             username = p.UserPosted.UserName,
             userPhoto = p.UserPosted.PhotoURL,
             content = p.content,
             imgUrl = p.photoURL,
-            Time = p.timePosted,
-        }).OrderByDescending(p => p.Time);
+            time = p.timePosted,
+            firstName = p.UserPosted.FirstName,
+            lastName = p.UserPosted.LastName,
+            likes = p.Likes,
+            isLiked = userLiked.Any(pId => pId == p.id)
+
+        }).OrderByDescending(p => p.time);
     }
 }

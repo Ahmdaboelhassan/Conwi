@@ -13,6 +13,9 @@
       </div>
 
       <div class="flex flex-col text-slate-500">
+        <span class="font-semibold text-slate-700">{{
+          post().firstName + " " + post().lastName
+        }}</span>
         <span>{{ "@" + post().username }} </span>
       </div>
     </div>
@@ -39,10 +42,20 @@
   <div class="post-footer text-end">
     <button
       type="button"
+      #button
       class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:outline-none font-medium rounded-lg text-sm px-6 py-2 text-center me-2 mb-2"
+      (click)="LikePost(post().id, button)"
     >
-      <i class="fa-regular fa-heart"></i>
-      Like
+      <div class="text">
+        <i
+          id="icon"
+          class="fa-heart me-2"
+          [ngClass]="post().isLiked ? 'fa-solid' : 'fa-regular'"
+        ></i>
+        {{ post().likes }}
+        Likes
+      </div>
+      <div class="loader hidden"></div>
     </button>
   </div>
 </div>

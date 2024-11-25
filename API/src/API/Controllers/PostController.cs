@@ -1,14 +1,17 @@
 ﻿using Application.DTO.Request;
 using Application.Post.Commands.CreatePost;
 using Application.Post.Commands.DeletePost;
+using Application.Post.Commands.LikePost;
 using Application.Post.Queries.GetFollowingPosts;
 using Application.Post.Queries.GetUserPosts;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
 namespace API.Controllers
 {
+    [Authorize]
     public class PostController : BaseController
     {
         private readonly IMediator _mediator;
@@ -44,6 +47,15 @@ namespace API.Controllers
         public async Task<IActionResult> DeletePost(int postId , string userId)
         {
             var success = await _mediator.Send(new DeletePostCommand(postId , userId));
+
+            return !success ? BadRequest(_localizer["CreatePostFailed"].Value) : Ok();
+        }
+
+        [HttpPost]
+        [Route("LikePost")]
+        public async Task<IActionResult> LikePost(LikePost model)
+        {
+            var success = await _mediator.Send(new LikePostCommand(model.postId , model.userId));
 
             return !success ? BadRequest(_localizer["CreatePostFailed"].Value) : Ok();
         }

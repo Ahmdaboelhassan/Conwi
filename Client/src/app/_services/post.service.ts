@@ -28,4 +28,9 @@ export class PostService {
     const url = environment.baseUrl + `Post/DeletePost/${postId}/${userId}`;
     return this.http.get<boolean>(url);
   }
+
+  LikePost(postId, userId) {
+    const url = environment.baseUrl + `Post/LikePost`;
+    return this.http.post<boolean>(url, { postId, userId });
+  }
 }

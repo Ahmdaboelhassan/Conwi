@@ -1,7 +1,7 @@
 @for (post of posts(); track post.id) {
 <app-post [post]="post" />
-} @if (isloading) {
-<div class="loading-holder">
+}
+
+<div class="loading-holder" [ngClass]="{ '!hidden': !isloading }" id="loader">
   <app-loader></app-loader>
 </div>
-}
