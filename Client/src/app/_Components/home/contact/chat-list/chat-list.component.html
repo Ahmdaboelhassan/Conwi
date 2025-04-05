@@ -1,0 +1,5 @@
+<div class="relative border-r border-solid border-gray-200">
+  @for(chat of chats(); track $index) {
+  <app-chat-list-item [chat]="chat"></app-chat-list-item>
+  }
+</div>

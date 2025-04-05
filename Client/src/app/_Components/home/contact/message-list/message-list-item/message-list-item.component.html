@@ -1,0 +1,11 @@
+@if(message){
+<div class="w-3/4 {{ IsSent ? 'ms-auto' : '' }}">
+  <div
+    class="bg-gray-200 mt-3 p-3 rounded-xl w-fit {{
+      IsSent ? 'ms-auto bg-purple-500 text-white' : ''
+    }}"
+  >
+    <p class="mb-2 break-all">{{ message.content }}</p>
+  </div>
+</div>
+}

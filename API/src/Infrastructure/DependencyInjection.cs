@@ -25,10 +25,10 @@ namespace Infrastructure
             if (string.IsNullOrEmpty(ConnectionStrings)) throw new NullReferenceException("You should Provide ConnecionStrings");
 
             //Add Sql Server
-           // services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(ConnectionStrings));
+           services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(ConnectionStrings));
 
            // postgress
-            services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(ConnectionStrings));
+           // services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(ConnectionStrings));
 
             
 

@@ -17,8 +17,9 @@ export class AuthService {
 
   user$: Observable<User> = this.userSubject.asObservable();
 
-  baseUrl = environment.baseUrl;
+  CurrentuserId;
 
+  baseUrl = environment.baseUrl;
   constructor(private http: HttpClient, private toester: ToastrService) {}
 
   register(model: RegisterModel): Subscription {
@@ -53,6 +54,7 @@ export class AuthService {
 
       if (singInUser.getToken) {
         this.userSubject.next(singInUser);
+        this.CurrentuserId = singInUser.Id;
       }
     }
   }
@@ -80,6 +82,7 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(registerdUser));
     localStorage.setItem('token', response.token);
     this.userSubject.next(registerdUser);
+    this.CurrentuserId = registerdUser.Id;
     this.toester.success(`Hi ${registerdUser.Username}`);
   }
 
@@ -103,12 +106,6 @@ export class AuthService {
   }
 
   getCurrentUserId() {
-    let id: string;
-    this.userSubject.pipe(take(1)).subscribe({
-      next: (user) => {
-        if (user) id = user.Id;
-      },
-    });
-    return id;
+    return this.userSubject.value ? this.userSubject.value.Id : null;
   }
 }

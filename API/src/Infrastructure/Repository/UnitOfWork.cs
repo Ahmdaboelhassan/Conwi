@@ -16,6 +16,7 @@ namespace Infrastructure.Repository
             Posts = new PostRepo(db, config);
             UserFollow = new UserFollowRepo(db , config);
             UserLike = new UserLikeRepo(db , config);
+            Messages = new MessageRepo(db , config);
             _db = db;
         }
 
@@ -25,6 +26,7 @@ namespace Infrastructure.Repository
 
         public IUserFollowRepo UserFollow{ get; private set; }
         public IUserLikeRepo UserLike{ get; private set; }
+        public IMessagesRepo Messages{ get; private set; }
 
         public IDbTransaction StartTransaction()
         {
@@ -35,6 +37,11 @@ namespace Infrastructure.Repository
         public int SaveChanges()
         {
             return _db.SaveChanges();
+        }
+
+        public Task SaveChangesAsync()
+        {
+            return _db.SaveChangesAsync();
         }
 
     }

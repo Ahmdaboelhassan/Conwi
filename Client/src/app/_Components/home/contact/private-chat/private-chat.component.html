@@ -1,0 +1,22 @@
+<div class="relative">
+  <app-messages-header
+    [username]="contactName()"
+    [photo]="contactPhoto()"
+  ></app-messages-header>
+  <div
+    class="h-[calc(100vh-216px)] overflow-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300 relative pb-10"
+  >
+    <app-message-list [messages]="messages()"></app-message-list>
+  </div>
+  <app-send-input-control
+    (messageSendEvent)="messageSent($event)"
+    [revieverId]="contactId()"
+  ></app-send-input-control>
+  @if(IsLoading()){
+  <div
+    class="absolute top-0 right-0 w-full h-full flex justify-center items-center bg-white"
+  >
+    <app-loader></app-loader>
+  </div>
+  }
+</div>

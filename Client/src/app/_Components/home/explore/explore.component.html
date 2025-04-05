@@ -1,0 +1,20 @@
+<form class="flex items-center lg:w-3/5 mt-4 mx-auto">
+  <label for="simple-search" class="sr-only">Search</label>
+  <div class="relative w-full">
+    <div
+      class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+    >
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <input
+      type="text"
+      id="userSearch"
+      (keyup)="Search($event)"
+      class="bg-gray-50 border border-gray-300 text-purple-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-2.5 py-4 outline-none"
+      placeholder="Search for other users in conwi..."
+      required
+    />
+  </div>
+</form>
+<br />
+<app-users [users]="users" />

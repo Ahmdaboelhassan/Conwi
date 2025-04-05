@@ -1,0 +1,13 @@
+<div class="container md:w-3/5">
+  @if (posts().length > 0){ @for (post of posts(); track post.id) {
+  <app-post [post]="post" />
+  } } @else {
+  <div class="alert alert-info mt-2" role="alert">
+    There Is No Posts For You , Follow Users To See Thier Posts
+  </div>
+  }
+
+  <div class="loading-holder" [ngClass]="{ '!hidden': !isloading }" id="loader">
+    <app-loader></app-loader>
+  </div>
+</div>

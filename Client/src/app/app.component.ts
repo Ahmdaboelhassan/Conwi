@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
-import { RegisterComponent } from './Register/Register.component';
-import { NavigatorComponent } from './home/navigator/navigator.component';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { HeaderComponent } from './_Components/header/header.component';
+import { HomeComponent } from './_Components/home/home.component';
+import { RegisterComponent } from './_Components/Register/Register.component';
 import { AuthService } from './_services/auth.service';
 import { User } from './_models/User';
 
@@ -12,14 +10,7 @@ import { User } from './_models/User';
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  imports: [
-    HeaderComponent,
-    HomeComponent,
-    RegisterComponent,
-    NavigatorComponent,
-    RouterLink,
-    RouterLinkActive,
-  ],
+  imports: [HeaderComponent, HomeComponent, RegisterComponent],
 })
 export class AppComponent implements OnInit {
   isAuth: boolean = false;

@@ -13,9 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Logging.ClearProviders();
 
+builder.Logging.ClearProviders();
 builder.Host.UseSerilog((context, confg) => confg.ReadFrom.Configuration(context.Configuration));
+
+builder.Services.AddSignalR();
 
 // Configure The Layers
 var appConfig = builder.Configuration;

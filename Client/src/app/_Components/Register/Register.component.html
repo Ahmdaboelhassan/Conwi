@@ -1,0 +1,125 @@
+<div class="container flex justify-between gap-5 mt-4">
+  <div class="auth-form w-full lg:w-2/5">
+    <form autocomplete="off" [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="row my-3">
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Fisrt Name"
+            formControlName="FirstName"
+          />
+        </div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Last Name"
+            formControlName="LastName"
+          />
+        </div>
+        <p class="text-danger" *ngIf="isNotValid('FirstName')">
+          First Name Requird Alphapetic Charcaters in length 15 Charcaters only
+        </p>
+        <p class="text-danger" *ngIf="isNotValid('LastName')">
+          Last Name Requird Alphapetic Charcaters in length 15 Charcaters only
+        </p>
+      </div>
+      <div class="mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          formControlName="Username"
+        />
+        <p class="text-danger" *ngIf="isNotValid('Username')">
+          Username is Requird Alphapetic Charcaters
+        </p>
+      </div>
+      <div class="mb-3">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          formControlName="Email"
+        />
+        <p class="text-danger" *ngIf="isNotValid('Email')">Write Valid Email</p>
+      </div>
+      <div class="row my-3">
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Conrty"
+            formControlName="Country"
+          />
+          <p class="text-danger" *ngIf="isNotValid('Country')">
+            Country is Requird
+          </p>
+        </div>
+        <div class="col-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="City"
+            formControlName="City"
+          />
+          <p class="text-danger" *ngIf="isNotValid('City')">City is Requird</p>
+        </div>
+      </div>
+      <div class="mb-3">
+        <input
+          type="date"
+          class="form-control"
+          placeholder="Date of Birth"
+          formControlName="DateOfBirth"
+        />
+      </div>
+      <div class="mb-3">
+        <input
+          type="tel"
+          class="form-control"
+          placeholder="Phone number"
+          formControlName="PhoneNumber"
+        />
+        <p class="text-danger" *ngIf="isNotValid('PhoneNumber')">
+          Write Valid Phone Number
+        </p>
+      </div>
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Passowrd"
+          formControlName="Password"
+        />
+        <p class="text-danger" *ngIf="isNotValid('Password')">
+          Password is Requird
+        </p>
+      </div>
+      <div class="mb-3">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Confirm Passowrd"
+          formControlName="ConfrimPassword"
+        />
+        <p class="text-danger" *ngIf="isNotValid('ConfrimPassword')">
+          Confirm Password should be as same as password
+        </p>
+      </div>
+
+      <div class="buttons">
+        <input class="btn btn-primary" type="submit" value="Register" />
+      </div>
+    </form>
+  </div>
+  <div class="text-right lg:w-3/5 hidden lg:block">
+    <img class="w-100" src="./../../assets/socialmedia.png" alt="Conwi" />
+  </div>
+</div>
+@if (isloading) {
+<div class="loading-holder">
+  <app-loader></app-loader>
+</div>
+}

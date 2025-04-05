@@ -1,0 +1,18 @@
+<a [routerLink]="[chat.userId]">
+  <div class="py-3 px-4 flex items-center border-b gap-3 hover:bg-gray-50">
+    <div class="text-center me-2">
+      <img class="w-16 rounded-full" [src]="chat.userPhoto" alt="Photo" />
+    </div>
+    <div class="overflow-hidden flex-1">
+      <p class="font-bold text-lg mb-0">
+        {{ chat.userFirstName }} {{ chat.userLastName }}
+      </p>
+      <p class="text-sm text-gray-500 text-nowrap text-ellipsis mb-0">
+        {{ chat.lastMessage }}
+      </p>
+      <p class="text-right text-sm italic text-purple-500 mb-0">
+        {{ chat.lastMessageTime | amTimeAgo }}
+      </p>
+    </div>
+  </div>
+</a>

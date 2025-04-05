@@ -23,7 +23,7 @@ public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, IEnumerable<U
 
         string criteria = request.criteria;
 
-        Expression<Func<AppUser, bool>> expression = u => !currentUserFollowersSet.Contains(u.Id) && request.userId != u.Id;
+        Expression<Func<AppUser, bool>> expression = u => request.userId != u.Id;
 
         if (!string.IsNullOrEmpty(criteria) && criteria.Length > 2)
         {
@@ -44,11 +44,9 @@ public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, IEnumerable<U
                 firstName = u.FirstName,
                 lastName = u.LastName,
                 photo = u.PhotoURL,
+                following = currentUserFollowersSet.Contains(u.Id),
             });
-
-        foreach (var user in users) 
-            user.following = currentUserFollowersSet.Contains(user.userId);
-
+        
         return users;
     }
 }

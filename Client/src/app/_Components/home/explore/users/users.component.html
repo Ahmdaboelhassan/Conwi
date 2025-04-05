@@ -1,0 +1,61 @@
+<div class="grid grid-cols-12 lg:w-3/5 mx-auto gap-3 justify-around relative">
+  @for (user of users(); track $index) {
+  <div
+    class="lg:col-span-6 col-span-12 bg-white border border-gray-200 rounded-lg user-card"
+  >
+    <div class="flex flex-col items-center py-10 px-4">
+      <img
+        class="w-24 h-24 mb-3 rounded-full shadow-sm"
+        loading="lazy"
+        src="{{ user.photo ? user.photo : defualtPhoto }}"
+        alt="Bonnie image"
+      />
+      <h5 class="mb-1 text-xl font-medium text-gray-900">
+        {{ user.firstName }} {{ user.lastName }}
+      </h5>
+      <span class="text-sm text-gray-500 dark:text-gray-400">{{
+        user.userName
+      }}</span>
+      <div class="flex mt-4 md:mt-6">
+        @if (!user.following){
+        <button
+          (click)="FollowUser(user, $event)"
+          id="followButton"
+          class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
+        >
+          <div>
+            <div class="loader hidden"></div>
+
+            <span class="text">
+              <i class="fa-solid fa-user-plus"></i> Follow
+            </span>
+          </div>
+        </button>
+        } @else {
+        <a
+          [routerLink]="'/contact/' + user.userId"
+          class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:outline-none font-medium rounded-lg text-sm px-4 py-2 text-center"
+        >
+          <i class="fa-solid fa-inbox"></i> Message</a
+        >
+        }
+
+        <button
+          [routerLink]="'/profile/' + user.userId"
+          class="py-2 px-5 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700"
+        >
+          <i class="fa-regular fa-eye"></i>
+          View Profile
+        </button>
+      </div>
+    </div>
+  </div>
+  }
+  <div
+    id="loader"
+    [ngClass]="{ hidden: !isloading }"
+    class="absolute w-100 h-100 top-0 left-0 bg-white flex justify-center items-start pt-40"
+  >
+    <app-loader></app-loader>
+  </div>
+</div>

@@ -14,6 +14,7 @@ namespace Infrastructure.Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<UserFollow> UserFollow { get; set; }
         public DbSet<UserLike> UserLike { get; set; }
+        public DbSet<Message> Messages { get; set; }
         
         protected override void OnModelCreating(ModelBuilder builder)
         {
