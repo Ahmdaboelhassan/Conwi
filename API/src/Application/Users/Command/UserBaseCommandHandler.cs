@@ -1,8 +1,8 @@
 ﻿using Application.Helper;
-using Application.IRepository;
-using Application.IServices;
 using AutoMapper;
 using Domain.Entity;
+using Domain.IRepository;
+using Domain.IServices;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;

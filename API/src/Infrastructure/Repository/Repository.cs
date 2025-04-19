@@ -1,5 +1,5 @@
-﻿using Application.IRepository;
-using Dapper;
+﻿using Dapper;
+using Domain.IRepository;
 using Infrastructure.Data;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;

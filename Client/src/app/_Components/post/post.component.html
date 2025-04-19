@@ -1,6 +1,6 @@
 <div
-  id="post"
-  class="post last:mb-20 p-3 my-3 border border-stone-950 border-solid rounded-lg"
+  class="post last:mb-20 p-3 my-3 border border-stone-950 border-solid rounded-lg transition-all"
+  #postElement
 >
   <div class="post-header flex align-middle justify-between">
     <div class="post-start flex gap-2">
@@ -23,10 +23,10 @@
       @if (userId === post().userId) {
       <button
         type="button"
-        class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-sm rounded-full text-sm px-3 py-2 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+        class="text-whitefocus:outline-none text-red-600"
         (click)="DeletePost(post().id, $event)"
       >
-        Delete
+        <i class="fa-solid fa-trash-can fa-lg"></i>
       </button>
       }
     </div>
@@ -43,19 +43,20 @@
     <button
       type="button"
       #button
-      class="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:outline-none font-medium rounded-lg text-sm px-6 py-2 text-center me-2 mb-2"
+      (mouseenter)="likedButtonHoverd = true"
+      (mouseleave)="likedButtonHoverd = false"
       (click)="LikePost(post().id, button)"
     >
       <div class="text">
         <i
           id="icon"
-          class="fa-heart me-2"
-          [ngClass]="post().isLiked ? 'fa-solid' : 'fa-regular'"
+          class="fa-heart me-2 fa-xl text-purple-700 transition-all"
+          [ngClass]="
+            post().isLiked || likedButtonHoverd ? 'fa-solid' : 'fa-regular'
+          "
         ></i>
         {{ post().likes }}
-        Likes
       </div>
-      <div class="loader hidden"></div>
     </button>
   </div>
 </div>

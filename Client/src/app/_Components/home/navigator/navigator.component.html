@@ -23,15 +23,41 @@
   >
     <i class="fa-solid fa-people-group icon"></i>
   </li>
-  <li class="flex-1" title="Notification">
-    <fa-icon class="icon" [icon]="icons.Notification"></fa-icon>
+  <li
+    class="flex-1"
+    title="Notification"
+    routerLink="notification"
+    routerLinkActive="active"
+    (click)="unReadNotifiaction.set(0)"
+  >
+    <span class="relative">
+      <fa-icon class="icon" [icon]="icons.Notification"> </fa-icon>
+      @if(unReadNotifiaction() > 0){
+      <span
+        class="absolute rounded-full text-xs px-1 min-w-5 min-h-5 text-white bg-red-600 flex justify-center items-center"
+        style="top: -20px; right: -15px"
+        >{{ unReadNotifiaction() }}</span
+      >
+      }
+    </span>
   </li>
   <li
     class="flex-1"
     routerLink="contact"
     routerLinkActive="active"
     title="contact"
+    (click)="unReadMessage.set(0)"
   >
-    <fa-icon class="icon" [icon]="icons.Message"></fa-icon>
+    <span class="relative">
+      <fa-icon class="icon" [icon]="icons.Message"></fa-icon>
+      @if(unReadMessage() > 0){
+
+      <span
+        class="absolute rounded-full text-xs px-1 min-w-5 min-h-5 text-white bg-red-600 flex justify-center items-center"
+        style="top: -20px; right: -17px"
+        >{{ unReadMessage() }}</span
+      >
+      }
+    </span>
   </li>
 </ul>

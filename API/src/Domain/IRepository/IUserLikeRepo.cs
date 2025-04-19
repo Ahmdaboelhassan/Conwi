@@ -1,6 +1,6 @@
 ﻿using Domain.Entity;
 
-namespace Application.IRepository;
+namespace Domain.IRepository;
 
 public interface IUserLikeRepo : IReposetory<UserLike>;
 

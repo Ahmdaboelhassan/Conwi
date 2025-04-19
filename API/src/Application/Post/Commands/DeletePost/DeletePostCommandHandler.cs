@@ -1,4 +1,4 @@
-﻿using Application.IRepository;
+﻿using Domain.IRepository;
 using MediatR;
 
 namespace Application.Post.Commands.DeletePost;
@@ -17,7 +17,7 @@ public class DeletePostCommandHandler : IRequestHandler<DeletePostCommand, bool>
         if (post != null &&  post.UserPostedId == request.userId)
         {
             _uow.Posts.Delete(post);
-            _uow.SaveChanges();
+            await _uow.SaveChangesAsync();
             return true;
         }
         return false;

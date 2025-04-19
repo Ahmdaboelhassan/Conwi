@@ -1,4 +1,5 @@
 using System.Globalization;
+using API.Hubs;
 using API.Localization;
 using Application;
 using Infrastructure;
@@ -76,8 +77,10 @@ app.UseSerilogRequestLogging();
 // app.UseCors(options => options.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
 app.UseCors("AllowedAudience");
 
-app.UseAuthentication();
+app.MapHub<MessageHub>("/MessageHub");
 
+app.UseAuthentication();
+    
 app.UseAuthorization();
 
 app.MapControllers();

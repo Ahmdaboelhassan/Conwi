@@ -1,0 +1,25 @@
+<div
+  class="post last:mb-20 p-3 my-1 border border-stone-950 border-solid rounded-lg transition-all"
+  [ngClass]="{ 'bg-purple-100': !notificationItem.isRead }"
+  (click)="MarkRead(notificationItem.id)"
+  #postElement
+>
+  <div class="post-header flex align-middle justify-between">
+    <div class="post-start flex gap-1">
+      <div class="user-img w-16 h-16 me-3">
+        <img
+          src="{{ notificationItem.photo }}"
+          alt="User Image"
+          class="w-full rounded-full"
+        />
+      </div>
+      <div class="flex-1">
+        <p class="m-0">
+          <span class="text-purple-600"> {{ notificationItem.title }}</span>
+          {{ notificationItem.message }}
+        </p>
+        <p class="text-purple-600">{{ notificationItem.time | amTimeAgo }}</p>
+      </div>
+    </div>
+  </div>
+</div>

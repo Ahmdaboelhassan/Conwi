@@ -1,6 +1,6 @@
 ﻿using Application.DTO.Response;
-using Application.IRepository;
 using Domain.Entity;
+using Domain.IRepository;
 using MediatR;
 
 namespace Application.Messages.Queries.GetAllChats
@@ -34,7 +34,9 @@ namespace Application.Messages.Queries.GetAllChats
                 {
                     userId = user.Id,
                     lastMessage = lastMessage.Content,
-                    lastMessageTime = lastMessage.SendTime  ,
+                    lastMessageTime = lastMessage.SendTime,
+                    lastMessageId = lastMessage.Id,
+                    lastMessageRead = lastMessage.RevieverId != currentUserId || lastMessage.IsReaded,
                     userName = user.UserName,
                     userPhoto = user.PhotoURL,
                     UserFirstName = user.FirstName,

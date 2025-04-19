@@ -1,7 +1,7 @@
 ﻿using Domain.Entity;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace Application.IServices;
+namespace Domain.IServices;
 
 public interface ITokenService
 {

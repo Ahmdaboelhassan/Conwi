@@ -1,7 +1,7 @@
 using System.Linq.Expressions;
 using Application.DTO.Response;
-using Application.IRepository;
 using Domain.Entity;
+using Domain.IRepository;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

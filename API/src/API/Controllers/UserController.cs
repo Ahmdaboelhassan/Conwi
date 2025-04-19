@@ -8,6 +8,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using System.Security.Claims;
 
 namespace API.Controllers;
 
@@ -24,9 +25,10 @@ public class UserController : BaseController
 
     [HttpGet]
     [Route("UserProfile/{id}/{userId}")]
-    public async Task<IActionResult> UserProfile(string id , string userId) 
-         => Ok(await _mediator.Send(new UserProfileQuery(id ,userId)));
-    
+    public async Task<IActionResult> UserProfile(string id, string userId)
+    {
+       return Ok(await _mediator.Send(new UserProfileQuery(id, userId)));
+    }
 
     [HttpGet]
     [Route("SearchUsers")]

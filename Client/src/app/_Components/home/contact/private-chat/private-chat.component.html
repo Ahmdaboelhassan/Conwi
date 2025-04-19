@@ -4,14 +4,17 @@
     [photo]="contactPhoto()"
   ></app-messages-header>
   <div
+    #messagesList
     class="h-[calc(100vh-216px)] overflow-auto [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-thumb]:bg-gray-300 relative pb-10"
   >
     <app-message-list [messages]="messages()"></app-message-list>
+
+    @if(isTyping()){
+    <div class="loader ms-4"></div>
+    }
   </div>
-  <app-send-input-control
-    (messageSendEvent)="messageSent($event)"
-    [revieverId]="contactId()"
-  ></app-send-input-control>
+  <app-send-input-control [revieverId]="contactId()"></app-send-input-control>
+
   @if(IsLoading()){
   <div
     class="absolute top-0 right-0 w-full h-full flex justify-center items-center bg-white"

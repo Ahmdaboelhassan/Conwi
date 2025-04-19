@@ -1,4 +1,4 @@
-<div class="p-4">
+<div class="p-4" #messagesList>
   @for (msg of messages ; track $index) {
   <app-message-list-item [message]="msg"></app-message-list-item>
   }

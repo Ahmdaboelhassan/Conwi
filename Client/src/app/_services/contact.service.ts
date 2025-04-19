@@ -33,33 +33,45 @@ export class ContactService {
     return this.http.post(url, message);
   }
 
-  UpdateChatListWithLastMessage(msg: Message, receiverId: string) {
+  GetUnReadMessages() {
+    const url = environment.baseUrl + `Message/GetUnReadMessages`;
+    return this.http.get<number>(url);
+  }
+
+  ReadMessage(msgId) {
+    const url = environment.baseUrl + `Message/ReadMessage/${msgId}`;
+    return this.http.put<number>(url, {});
+  }
+
+  UpdateChatListWithLastMessage(content, receiver, sender, currentUser) {
     this.chats.update((currentChats) => {
-      const userChat = currentChats.filter((ch) => ch.userId == receiverId);
+      debugger;
+      const userChat = currentChats.filter((ch) => ch.userId == receiver);
       let updatedChats: Chat[] = [];
       if (userChat.length > 0) {
         updatedChats = currentChats.map((chat) =>
-          chat.userId === receiverId
+          chat.userId === receiver
             ? {
                 ...chat,
-                lastMessage: msg.content,
-                lastMessageTime: msg.sendTime,
+                lastMessageRead: sender == currentUser,
+                lastMessage: content,
+                lastMessageTime: new Date(),
               }
             : chat
         );
       } else {
         const newChat: Chat = {
-          lastMessage: msg.content,
-          lastMessageTime: msg.sendTime,
-          userFirstName: this.privateChat.firstName,
-          userLastName: this.privateChat.lastName,
-          userId: receiverId,
-          userName: this.privateChat.username,
-          userPhoto: this.privateChat.userPhoto,
+          lastMessage: content,
+          lastMessageTime: new Date(),
+          lastMessageRead: sender == currentUser,
+          userFirstName: this.privateChat?.firstName ?? 'New Message',
+          userLastName: this.privateChat?.lastName,
+          userId: receiver,
+          userName: this.privateChat?.username,
+          userPhoto:
+            this.privateChat?.userPhoto ?? environment.defualtProfilePhoto,
         };
-        currentChats.push(newChat);
-
-        updatedChats = currentChats;
+        updatedChats = [...currentChats, newChat];
       }
 
       return updatedChats.sort((a, b) => {

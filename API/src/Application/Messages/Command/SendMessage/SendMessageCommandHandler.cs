@@ -1,12 +1,12 @@
-﻿using Application.IRepository;
-using AutoMapper;
+﻿using AutoMapper;
 using Domain.Entity;
+using Domain.IRepository;
 
 namespace Application.Messages.Command.SendMessage
 {
     public class SendMessageCommandHandler : MessageCommandBaseHandler<SendMessageCommand, bool>
     {
-        public SendMessageCommandHandler(IUnitOfWork uow, IMapper _fakeMapper) : base(uow) { }
+        public SendMessageCommandHandler(IUnitOfWork uow) : base(uow) { }
         public async override Task<bool> Handle(SendMessageCommand request, CancellationToken cancellationToken)
         {
             var model = request.Message;
@@ -28,7 +28,8 @@ namespace Application.Messages.Command.SendMessage
 
            await _unitOfWork.Messages.AddAsync(newMessage);
            await _unitOfWork.SaveChangesAsync();
-            return true;
+
+           return true;
         }
     }
 }

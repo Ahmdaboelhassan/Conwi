@@ -1,7 +1,6 @@
 using Application.Helper;
 using Application.DTO.Request;
 using Application.DTO.Response;
-using Application.IServices;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using Application.Auth.Command.Register;
@@ -10,6 +9,7 @@ using Application.Auth.Queries.GetEmailConfirmationToken;
 using Application.Auth.Queries.GetPasswordResetToken;
 using Application.Auth.Command.ConfirmEmail;
 using Application.Auth.Command.ResetPassword;
+using Domain.IServices;
 
 namespace API.Controllers
 {

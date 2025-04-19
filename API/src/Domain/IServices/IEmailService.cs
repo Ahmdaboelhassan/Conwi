@@ -1,4 +1,4 @@
-namespace Application.IServices
+namespace Domain.IServices
 {
     public interface IEmailService
     {

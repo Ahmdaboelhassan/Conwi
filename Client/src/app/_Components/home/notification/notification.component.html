@@ -1,0 +1,11 @@
+<div class="lg:w-3/5 mt-4 mx-auto">
+  <app-notification-list
+    [notifiationList]="notificaions"
+  ></app-notification-list>
+</div>
+<div
+  [ngClass]="{ hidden: !isloading }"
+  class="absolute w-100 h-100 top-0 left-0 bg-white flex justify-center items-start pt-40"
+>
+  <app-loader></app-loader>
+</div>

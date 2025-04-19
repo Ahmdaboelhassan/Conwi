@@ -1,7 +1,7 @@
-﻿using Application.IRepository;
-using Application.IServices;
-using CloudinaryDotNet.Actions;
+﻿using CloudinaryDotNet.Actions;
 using Domain.Entity;
+using Domain.IRepository;
+using Domain.IServices;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 

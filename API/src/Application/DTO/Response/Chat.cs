@@ -7,5 +7,7 @@ public class Chat
     public string userName { get; set; }
     public string userPhoto { get; set; }
     public string lastMessage { get; set; }
+    public int lastMessageId { get; set; }
+    public bool lastMessageRead { get; set; }
     public DateTime lastMessageTime { get; set; }
 }

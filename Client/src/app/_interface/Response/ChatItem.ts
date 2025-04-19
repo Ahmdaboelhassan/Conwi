@@ -6,4 +6,6 @@ export interface Chat {
   userPhoto: string;
   lastMessage: string;
   lastMessageTime: Date;
+  lastMessageId?: number;
+  lastMessageRead?: boolean;
 }

@@ -1,10 +1,10 @@
 ﻿using Application.DTO.Request;
-using Application.IRepository;
 using Application.Messages.Command.SendMessage;
 using AutoMapper;
 using Domain.Entity;
+using Domain.IRepository;
 using FakeItEasy;
-    
+
 namespace Application.Tests.Messages.Command;
 
 public class SendMessageCommandHandlerTest

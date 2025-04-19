@@ -1,5 +1,5 @@
 ﻿using Domain.Entity;
 
-namespace Application.IRepository;
+namespace Domain.IRepository;
 public interface IMessagesRepo : IReposetory<Message>;
 

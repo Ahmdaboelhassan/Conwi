@@ -1,6 +1,8 @@
-﻿using Application.IRepository;
+﻿using Application.DTO.Response;
 using Domain.Entity;
+using Domain.IRepository;
 using MediatR;
+using System.Collections.Generic;
 
 namespace Application.Post.Commands.LikePost;
 
@@ -34,6 +36,20 @@ public class LikePostCommandHandler : IRequestHandler<LikePostCommand, bool>
                     UserId = userId,
                 });
 
+            // send notification 
+            var notification = new Notification
+            {
+                DestUser = post.UserPostedId,
+                SourceUser = userId,
+                Title = "New Like",
+                Photo = user.PhotoURL,
+                Message = $"{user.UserName} Liked your post",
+                Time = DateTime.Now,
+                Type = (byte)NotificationTypes.Like
+            };
+
+            await _uow.Notification.AddAsync(notification);
+
         }
         else
         {
@@ -42,7 +58,10 @@ public class LikePostCommandHandler : IRequestHandler<LikePostCommand, bool>
             _uow.UserLike.Delete(userLike);
 
         }
-         _uow.SaveChanges();
+
+       
+
+        _uow.SaveChanges();
 
         return true;
 

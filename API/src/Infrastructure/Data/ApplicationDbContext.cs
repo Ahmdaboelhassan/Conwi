@@ -1,4 +1,4 @@
-using Infrastructure.Helper;
+using Domain.Helper;
 using Domain.Entity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +15,7 @@ namespace Infrastructure.Data
         public DbSet<UserFollow> UserFollow { get; set; }
         public DbSet<UserLike> UserLike { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
         
         protected override void OnModelCreating(ModelBuilder builder)
         {

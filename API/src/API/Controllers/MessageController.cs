@@ -1,9 +1,10 @@
 ﻿using Application.DTO.Request;
 using Application.Messages.Command.DeleteMessage;
-using Application.Messages.Command.ReadMessage;
 using Application.Messages.Command.SendMessage;
 using Application.Messages.Queries.GetAllChats;
 using Application.Messages.Queries.GetPrivateChat;
+using Application.Messages.Queries.GetUnreadMessages;
+using Application.Users.Extension;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -32,21 +33,17 @@ public class MessageController : BaseController
         return Ok(await _mediator.Send(new GetPrivateChatQuery(user , contact)));
     }
 
+    [HttpGet]
+    [Route("GetUnReadMessages")]
+    public async Task<IActionResult> GetInReadMessages()
+    {
+        return Ok(await _mediator.Send(new GetUnReadMessageQuery()));
+    }
     [HttpDelete]
     [Route("DeleteMessage/{id:int}")]
     public async Task<IActionResult> DeleteMessage(int messageId, string userId)
     {
         if (await _mediator.Send(new DeleteMessageCommand(messageId , userId)))
-            return Ok();
-
-        return BadRequest("Error Happened");
-    }
-
-    [HttpPut]
-    [Route("ReadMessage/{id:int}")]
-    public async Task<IActionResult> ReadMessage(int messageId , string userId)
-    {
-        if (await _mediator.Send(new ReadMessageCommand(messageId , userId)))
             return Ok();
 
         return BadRequest("Error Happened");

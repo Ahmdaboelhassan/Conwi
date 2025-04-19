@@ -1,5 +1,5 @@
-﻿using Application.IServices;
-using Domain.Entity;
+﻿using Domain.Entity;
+using Domain.IServices;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 

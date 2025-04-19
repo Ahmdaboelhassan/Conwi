@@ -1,5 +1,5 @@
 using Application.DTO.Response;
-using Application.IRepository;
+using Domain.IRepository;
 using MediatR;
 
 namespace Application.Users.Queries.GetNonFollowingUsers;

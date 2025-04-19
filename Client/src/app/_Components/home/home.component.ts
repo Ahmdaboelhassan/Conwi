@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { ProfileComponent } from './profile/profile.component';
-import { TimelineComponent } from './timeline/timeline.component';
 import { NavigatorComponent } from './navigator/navigator.component';
 import { RouterOutlet } from '@angular/router';
 
@@ -9,11 +7,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [
-    ProfileComponent,
-    TimelineComponent,
-    NavigatorComponent,
-    RouterOutlet,
-  ],
+  imports: [NavigatorComponent, RouterOutlet],
 })
 export class HomeComponent {}

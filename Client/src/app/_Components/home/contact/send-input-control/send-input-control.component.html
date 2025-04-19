@@ -4,13 +4,15 @@
   <input
     type="text"
     #content
-    class="bg-gray-50 basis-3/4 border ps-6 border-solid border-purple-600 rounded-2xl h-10 outline-none"
+    class="bg-gray-50 basis-5/6 border ps-6 border-solid border-purple-600 rounded-2xl h-10 outline-none"
+    (input)="TriggerIsTypeEvent()"
+    (keydown.enter)="SendMessage(content)"
   />
   <button
-    class="px-4 basis-1/4 py-1.5 rounded-xl text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700"
+    class="px-4 basis-1/6 py-1.5 rounded-xl text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700"
     (click)="SendMessage(content)"
     type="button"
   >
-    Send
+    <i class="fa-solid fa-paper-plane"></i>
   </button>
 </div>

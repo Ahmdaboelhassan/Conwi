@@ -1,5 +1,6 @@
-﻿using Application.IRepository;
+﻿using Application.DTO.Response;
 using Domain.Entity;
+using Domain.IRepository;
 using MediatR;
 
 namespace Application.Users.Command.FollowUser;
@@ -16,9 +17,12 @@ internal class FollowUserCommandHandler : IRequestHandler<FollowUserCommand>
         var source = request.request.sourceId;
         var dist = request.request.destId;
 
+        var sourceUser = await _unitOfWork.Users.Get(u => u.Id == source);   
+
         var userFollow = await _unitOfWork.UserFollow.Get(uf => uf.SourceUserId == source && uf.DistinationUserId == dist);
 
         if (userFollow == null)
+        {
             await _unitOfWork.UserFollow.AddAsync(
                 new UserFollow
                 {
@@ -26,7 +30,23 @@ internal class FollowUserCommandHandler : IRequestHandler<FollowUserCommand>
                     SourceUserId = request.request.sourceId,
                 });
 
-        else  _unitOfWork.UserFollow.Delete(userFollow);
+            // send notification 
+            var notification = new Notification
+            {
+                DestUser = dist,
+                SourceUser = source,
+                Title = "New Follower",
+                Photo = sourceUser.PhotoURL,
+                Message = $"{sourceUser.UserName} started following you",
+                Time = DateTime.Now,
+                Type = (byte)NotificationTypes.Follow
+            };
+
+            await _unitOfWork.Notification.AddAsync(notification);
+        }
+        else {
+            _unitOfWork.UserFollow.Delete(userFollow);
+          }
 
         _unitOfWork.SaveChanges();
 

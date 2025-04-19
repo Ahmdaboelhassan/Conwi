@@ -1,7 +1,7 @@
 ﻿using Application.DTO.Request;
 using Application.DTO.Response;
-using Application.IRepository;
 using Domain.Entity;
+using Domain.IRepository;
 using MediatR;
 using System.Linq.Expressions;
 
@@ -22,7 +22,21 @@ namespace Application.Messages.Queries.GetPrivateChat
                 m => (m.SenderId == request.userId && m.RevieverId == request.contactId)
                 || (m.SenderId == request.contactId && m.RevieverId == request.userId);
 
-            var chatMessages = await _unitOfWork.Messages.SelectAll(predicate , m => new ChatMessage
+            var messages = await _unitOfWork.Messages.GetAll(predicate);
+
+            var receivedMessages = messages.Where(m => !m.IsReaded && m.RevieverId == request.userId);
+
+            if (receivedMessages.Any())
+            {
+                foreach (var msg in receivedMessages)
+                {
+                    msg.IsReaded = true;
+                    _unitOfWork.Messages.Update(msg);
+                }
+                await _unitOfWork.SaveChangesAsync();
+            }
+
+            var chatMessages = messages.Select(m => new ChatMessage
             {
                 Id = m.Id,
                 RevieverId = m.RevieverId,
@@ -37,12 +51,12 @@ namespace Application.Messages.Queries.GetPrivateChat
 
             return new PrivateChat
             {
-                messages = chatMessages,
                 userId = user.Id,
                 username = user.FirstName,
                 userPhoto = user.PhotoURL,
                 firstName = user.FirstName,
                 lastName = user.LastName,
+                messages = chatMessages,
             };
         }
     }

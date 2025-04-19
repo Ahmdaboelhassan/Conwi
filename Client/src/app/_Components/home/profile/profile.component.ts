@@ -48,7 +48,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userId = this.getCurrentUserId();
+    this.userId = this.authService.getCurrentUserId();
     let id = this.activeRoute.snapshot.paramMap.get('userId');
     this.isCuurentUser = !id;
 
@@ -60,19 +60,9 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  private getCurrentUserId() {
-    let id: string;
-    this.authService.user$.pipe(take(1)).subscribe({
-      next: (user) => {
-        if (user) id = user.Id;
-      },
-    });
-    return id;
-  }
-
   private intializeUserProfile(id: string) {
     if (id) {
-      this.userService.GetUserProfile(id, this.getCurrentUserId()).subscribe({
+      this.userService.GetUserProfile(id, this.userId).subscribe({
         next: (profile) => {
           this.userProfile = profile;
           if (!this.userProfile.photoURL) {
@@ -110,8 +100,10 @@ export class ProfileComponent implements OnInit {
 
   FollowUser(e) {
     this.userProfile.isFollowing = !this.userProfile.isFollowing;
+    this.loaderService.isDisabled = true;
     this.userService.followUser(this.userId, this.userProfileId).subscribe({
       next: () => this.toesterService.success('Opertion Done Successfully'),
+      complete: () => (this.loaderService.isDisabled = false),
     });
   }
 }

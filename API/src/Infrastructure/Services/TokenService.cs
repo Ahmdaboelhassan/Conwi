@@ -1,6 +1,6 @@
 ﻿using Application.Helper;
-using Application.IServices;
 using Domain.Entity;
+using Domain.IServices;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -26,10 +26,9 @@ internal class TokenService : ITokenService
         var userClaims = await _userManager.GetClaimsAsync(user);
 
         var claims = new[]{
-                new Claim(JwtRegisteredClaimNames.Name, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.NameId, user.Id),
-                new Claim(JwtRegisteredClaimNames.Jti , Guid.NewGuid().ToString())
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
             }
         .Union(userClaims);
 

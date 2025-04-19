@@ -1,4 +1,9 @@
-<a [routerLink]="[chat.userId]">
+<a
+  [routerLink]="['chat', chat.userId]"
+  [ngClass]="{ 'bg-purple-100': !chat.lastMessageRead }"
+  (click)="chat.lastMessageRead = true"
+  class="block"
+>
   <div class="py-3 px-4 flex items-center border-b gap-3 hover:bg-gray-50">
     <div class="text-center me-2">
       <img class="w-16 rounded-full" [src]="chat.userPhoto" alt="Photo" />

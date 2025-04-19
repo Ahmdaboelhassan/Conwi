@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace Application.IRepository;
+namespace Domain.IRepository;
 
 public interface IUnitOfWork
 {
@@ -9,6 +9,7 @@ public interface IUnitOfWork
     IUserFollowRepo UserFollow { get; }
     IUserLikeRepo UserLike { get; }
     IMessagesRepo Messages { get; }
+    INotificationRepo Notification { get;}
 
     int SaveChanges();
     Task SaveChangesAsync();

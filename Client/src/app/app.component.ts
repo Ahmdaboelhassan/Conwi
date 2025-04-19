@@ -4,6 +4,7 @@ import { HomeComponent } from './_Components/home/home.component';
 import { RegisterComponent } from './_Components/Register/Register.component';
 import { AuthService } from './_services/auth.service';
 import { User } from './_models/User';
+import { MessageHub } from './_hubs/message.hub';
 
 @Component({
   selector: 'app-root',
@@ -15,12 +16,19 @@ import { User } from './_models/User';
 export class AppComponent implements OnInit {
   isAuth: boolean = false;
   isloading: boolean = false;
-
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private messageHub: MessageHub
+  ) {}
 
   ngOnInit(): void {
     this.authService.user$.subscribe({
-      next: (user: User) => (this.isAuth = !!user),
+      next: (user: User) => {
+        this.isAuth = !!user;
+        if (user) {
+          this.messageHub.StartConnention(user.Id);
+        }
+      },
     });
   }
 }

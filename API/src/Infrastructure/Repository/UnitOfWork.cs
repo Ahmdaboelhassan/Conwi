@@ -1,4 +1,4 @@
-﻿using Application.IRepository;
+﻿using Domain.IRepository;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
@@ -17,6 +17,8 @@ namespace Infrastructure.Repository
             UserFollow = new UserFollowRepo(db , config);
             UserLike = new UserLikeRepo(db , config);
             Messages = new MessageRepo(db , config);
+            Notification = new NotificationRepo(db , config);
+
             _db = db;
         }
 
@@ -27,6 +29,7 @@ namespace Infrastructure.Repository
         public IUserFollowRepo UserFollow{ get; private set; }
         public IUserLikeRepo UserLike{ get; private set; }
         public IMessagesRepo Messages{ get; private set; }
+        public INotificationRepo Notification { get; private set; }
 
         public IDbTransaction StartTransaction()
         {

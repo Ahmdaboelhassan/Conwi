@@ -3,6 +3,7 @@ import { Message } from 'src/app/_interface/Response/Message';
 import { AuthService } from 'src/app/_services/auth.service';
 import { ContactService } from 'src/app/_services/contact.service';
 import { LoaderService } from 'src/app/_services/loader.service';
+import { MessageHub } from 'src/app/_hubs/message.hub';
 
 @Component({
   selector: 'app-send-input-control',
@@ -12,26 +13,39 @@ import { LoaderService } from 'src/app/_services/loader.service';
   styleUrl: './send-input-control.component.scss',
 })
 export class SendInputControlComponent {
-  private contactService = inject(ContactService);
-  private authService = inject(AuthService);
-  private loaderService = inject(LoaderService);
-  @Output() messageSendEvent = new EventEmitter<Message>();
+  private currentUserId = '';
   @Input() revieverId;
 
+  constructor(
+    private contactService: ContactService,
+    private authService: AuthService,
+    private loaderService: LoaderService,
+    private messageHub: MessageHub
+  ) {
+    this.currentUserId = this.authService.getCurrentUserId();
+  }
+
   SendMessage(content: HTMLInputElement) {
-    const currentUserId = this.authService.getCurrentUserId();
+    this.loaderService.isDisabled = true;
+
     const msg: Message = {
       content: content.value,
       sendTime: new Date(),
-      senderId: currentUserId,
+      senderId: this.currentUserId,
       revieverId: this.revieverId,
     };
 
-    this.loaderService.isDisabled = true;
-    this.messageSendEvent.emit(msg);
-    this.contactService.UpdateChatListWithLastMessage(msg, this.revieverId);
-    this.contactService.SendMessage(msg).subscribe();
-    content.value = '';
+    this.contactService.SendMessage(msg).subscribe({
+      next: () => {
+        this.messageHub.sendMessageSignalR(msg);
+      },
+    });
+
     this.loaderService.isDisabled = false;
+    content.value = '';
+  }
+
+  TriggerIsTypeEvent() {
+    this.messageHub.tiggerTyping(this.currentUserId, this.revieverId);
   }
 }

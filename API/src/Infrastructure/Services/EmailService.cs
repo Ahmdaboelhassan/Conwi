@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using MimeKit;
 using MailKit.Security;
 using Application.Helper;
-using Application.IServices;
+using Domain.IServices;
 
 namespace Infrastructure.Services
 {

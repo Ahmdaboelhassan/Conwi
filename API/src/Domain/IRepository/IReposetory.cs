@@ -1,7 +1,6 @@
-﻿
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 
-namespace Application.IRepository;
+namespace Domain.IRepository;
 
 public interface IReposetory<T>
 {

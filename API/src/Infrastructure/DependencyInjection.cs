@@ -1,7 +1,7 @@
 ﻿using Application.Helper;
-using Application.IRepository;
-using Application.IServices;
 using Domain.Entity;
+using Domain.IRepository;
+using Domain.IServices;
 using Infrastructure.Data;
 using Infrastructure.Repository;
 using Infrastructure.Services;
@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -42,7 +43,7 @@ namespace Infrastructure
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 
             }).AddJwtBearer(JwtOptions =>
-            {
+            {   
                 JwtOptions.TokenValidationParameters = new TokenValidationParameters()
                 {
                     ValidateIssuerSigningKey = true,
@@ -54,6 +55,7 @@ namespace Infrastructure
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Config["JWT:Key"])),
                     ClockSkew = TimeSpan.Zero
                 };
+
             });
             services.Configure<JWT>(Config.GetSection("JWT"));
 

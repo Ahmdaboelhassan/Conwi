@@ -1,5 +1,5 @@
-﻿using Application.IRepository;
-using AutoMapper;
+﻿using AutoMapper;
+using Domain.IRepository;
 using MediatR;
 
 namespace Application.Messages.Command;

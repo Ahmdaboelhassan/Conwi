@@ -3,7 +3,7 @@ using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Options;
 using Application.Helper;
 using Microsoft.AspNetCore.Http;
-using Application.IServices;
+using Domain.IServices;
 
 namespace Infrastructure.Services
 {

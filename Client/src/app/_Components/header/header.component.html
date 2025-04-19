@@ -34,12 +34,23 @@
         </div>
       </form>
       }@else{
-      <button class="flex-1 ms-auto" title="Logout" (click)="logout()">
-        <fa-icon
-          class="text-xl text-white hover:text-gray-300"
-          [icon]="icons.Logout"
-        ></fa-icon>
-      </button>
+      <div>
+        <a [routerLink]="'/profile'" class="me-3">
+          <i
+            class="fa-solid fa-circle-user text-white hover:text-gray-300 fa-xl me-2"
+          ></i>
+          <span class="font-medium text-white hover:text-gray-300">{{
+            userName()
+          }}</span>
+        </a>
+        <button class="flex-1 ms-auto" title="Logout" (click)="logout()">
+          <fa-icon
+            class="text-xl text-white hover:text-gray-300 me-2"
+            [icon]="icons.Logout"
+          ></fa-icon>
+          <span class="font-medium text-white hover:text-gray-300">Logout</span>
+        </button>
+      </div>
       }
     </div>
   </div>
